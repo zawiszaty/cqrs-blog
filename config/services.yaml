@@ -1,0 +1,81 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+
+    app.redis.redis_connection:
+        class: App\Redis\RedisConnection
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+        arguments:
+            - '@app.system.system'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    app.system.system:
+        class: App\System\System
+        arguments: ['@doctrine.orm.entity_manager', '@tactician.commandbus', '@logger', '@app.redis.redis_connection']
+
+    app.repository.redis.category_redis_repository:
+        class: App\Repository\Redis\CategoryRedisRepository
+        public: true
+        arguments:
+            - '@app.redis.redis_connection'
+
+    app.command_handler.add_category_handler:
+        class: App\CommandHandler\AddCategoryHandler
+        arguments: ['@doctrine.orm.entity_manager', '@event_dispatcher']
+        tags:
+            - { name: tactician.handler, command: App\Command\AddCategoryCommand }
+
+    app.command_handler.edit_category_handler:
+        class: App\CommandHandler\EditCategoryHandler
+        arguments: ['@doctrine.orm.entity_manager', '@event_dispatcher']
+        tags:
+            - { name: tactician.handler, command: App\Command\EditCategoryCommand }
+
+    app.command_handler.delete_category_handler:
+        class: App\CommandHandler\DeleteCategoryHandler
+        arguments: ['@doctrine.orm.entity_manager', '@event_dispatcher']
+        tags:
+            - { name: tactician.handler, command: App\Command\DeleteCategoryCommand }
+
+    app.projection.redis.add_category_projection:
+        class: App\Projection\Redis\CategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.add_category_projection, method: onAddCategoryEvent }
+
+    app.projection.redis.edit_category_projection:
+        class: App\Projection\Redis\CategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.edit_category_projection, method: onEditCategoryEvent }
+
+    app.projection.redis.delete_category_projection:
+        class: App\Projection\Redis\CategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.delete_category_projection, method: onDeleteCategoryEvent }
+
+    app.builder.response_builder:
+        class: App\Builder\ResponseBuilder
+        public: true
+        arguments:
+            - '@jms_serializer'
