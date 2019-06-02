@@ -1,0 +1,7 @@
+suites:
+    symfony_suite:
+        namespace: App\Symfony
+        spec_prefix: tests
+    blog_suite:
+        namespace: App\Blog
+        spec_prefix: tests
