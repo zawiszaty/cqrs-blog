@@ -5,9 +5,4 @@ jobs:
     steps:
       - checkout
       - run: make start
-  test:
-    machine: true
-    steps:
-      - run:
-          name: run test
-          command: 'make test'
+      - run: make test
