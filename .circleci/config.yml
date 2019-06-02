@@ -6,6 +6,7 @@ jobs:
       - checkout
       - run: make start
   test:
+    machine: true
     steps:
       - run:
           name: run test
