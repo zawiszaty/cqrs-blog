@@ -8,6 +8,7 @@ RUN apt-get update && \
 RUN curl --silent --show-error https://getcomposer.org/installer | php
 RUN apt-get install -y \
         libzip-dev \
+        unzip \
         zip \
   && docker-php-ext-configure zip --with-libzip \
   && docker-php-ext-install zip
