@@ -35,7 +35,7 @@ layer: ## layer
 		docker-compose exec php ./vendor/bin/deptrac
 
 .PHONY: phpunit
-phpunit: ## layer
+phpunit: ## test
 		docker-compose exec php ./bin/phpunit
 
 .PHONY: test
