@@ -2,11 +2,11 @@ version: 2
 jobs:
   build:
     docker:
+    steps:
+      - checkout
+      - run: make start
   test:
     steps:
-      - run:
-          name: run project
-          command: 'make start'
       - run:
           name: run test
           command: 'make test'
