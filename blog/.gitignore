@@ -12,7 +12,7 @@
 .phpunit
 /phpunit.xml
 
-/bin/
+/bin/.phpunit
 ###< symfony/phpunit-bridge ###
 
 ###> friendsofphp/php-cs-fixer ###
