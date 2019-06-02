@@ -1,4 +1,4 @@
-#CQRS BLOG
+# CQRS BLOG
 [![CircleCI](https://circleci.com/gh/zawiszaty/cqrs-blog.svg?style=svg)](https://circleci.com/gh/zawiszaty/cqrs-blog)
 
 This repo is example how to use CQRS in PHP
