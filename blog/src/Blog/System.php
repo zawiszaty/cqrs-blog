@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Blog;
-
 
 use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
 use App\Blog\Infrastructure\Shared\ServiceBus\QueryBus;
@@ -22,5 +22,15 @@ class System
     {
         $this->commandBus = $commandBus;
         $this->queryBus = $queryBus;
+    }
+
+    public function command(object $command): void
+    {
+        $this->commandBus->handle($command);
+    }
+
+    public function query(object $query): array
+    {
+        return $this->queryBus->handle($query);
     }
 }
