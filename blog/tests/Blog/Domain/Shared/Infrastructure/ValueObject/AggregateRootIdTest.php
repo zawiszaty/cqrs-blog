@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Domain\Shared\Infrastructure\ValueObject;
+namespace Tests\Blog\Domain\Shared\Infrastructure\ValueObject;
 
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

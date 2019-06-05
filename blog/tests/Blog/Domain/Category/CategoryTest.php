@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Domain\Category;
+namespace Tests\Blog\Domain\Category;
 
+use App\Blog\Domain\Category\Category;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 use PHPUnit\Framework\TestCase;
 

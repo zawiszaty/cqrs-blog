@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Shared\ServiceBus;
+namespace Tests\Blog\Infrastructure\Shared\ServiceBus;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Application\QueryHandlerInterface;
+use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
 use PHPUnit\Framework\TestCase;
 
 class TestCommand

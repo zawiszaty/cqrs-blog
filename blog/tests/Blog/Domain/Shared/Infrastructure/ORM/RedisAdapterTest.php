@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Domain\Shared\Infrastructure\ORM;
+namespace Tests\Blog\Domain\Shared\Infrastructure\ORM;
 
+use App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter;
 use PHPUnit\Framework\TestCase;
 
 class RedisAdapterTest extends TestCase

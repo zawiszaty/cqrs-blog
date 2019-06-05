@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Shared\ServiceBus;
+namespace Tests\Blog\Infrastructure\Shared\ServiceBus;
 
+use App\Blog\Infrastructure\Shared\ServiceBus\QueryBus;
 use PHPUnit\Framework\TestCase;
 
 class TestQuery

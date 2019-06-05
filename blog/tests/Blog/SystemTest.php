@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Blog;
+namespace Tests\Blog;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Application\QueryHandlerInterface;
 use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
 use App\Blog\Infrastructure\Shared\ServiceBus\QueryBus;
+use App\Blog\System;
 use PHPUnit\Framework\TestCase;
 
 class TestHandler implements CommandHandlerInterface, QueryHandlerInterface

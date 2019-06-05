@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Domain\Shared\Infrastructure\ValueObject;
+namespace Tests\Blog\Domain\Shared\Infrastructure\ValueObject;
 
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase

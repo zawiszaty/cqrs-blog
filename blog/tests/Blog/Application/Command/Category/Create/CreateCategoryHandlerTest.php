@@ -2,35 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Application\Command\Category\Create;
+namespace Tests\Blog\Application\Command\Category\Create;
 
-use App\Blog\Infrastructure\Category\Repository\Store\InMemoryCategoryStoreRepository;
-use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
-use PHPUnit\Framework\TestCase;
+use App\Blog\Application\Command\Category\Create\CreateCategoryCommand;
+use Tests\Blog\Application\ApplicationTestCase;
+use App\Blog\System;
 
-class CreateCategoryHandlerTest extends TestCase
+class CreateCategoryHandlerTest extends ApplicationTestCase
 {
     /**
-     * @var CommandBus
+     * @var System
      */
-    private $commandBus;
-
-    /**
-     * @var InMemoryCategoryStoreRepository
-     */
-    private $inMemoryCategoryStoreRepository;
+    private $system;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->commandBus = new CommandBus();
-        $this->inMemoryCategoryStoreRepository = new InMemoryCategoryStoreRepository();
-        $this->commandBus->addCommandHandler(new CreateCategoryHandler($this->inMemoryCategoryStoreRepository));
+        $this->system = $this->container->get(System::class);
     }
 
     public function test_it_handele_method()
     {
-        $this->assertNull($this->commandBus->handle(new CreateCategoryCommand('test')));
-        $this->assertSame($this->count($this->inMemoryCategoryStoreRepository->getAll()), 1);
+        $this->assertNull($this->system->command(new CreateCategoryCommand('test')));
     }
 }

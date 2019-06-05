@@ -17,6 +17,9 @@
             "config/routes/annotations.yaml"
         ]
     },
+    "doctrine/inflector": {
+        "version": "v1.3.0"
+    },
     "doctrine/instantiator": {
         "version": "1.2.0"
     },
@@ -37,6 +40,9 @@
     },
     "jean85/pretty-package-versions": {
         "version": "1.2"
+    },
+    "jetbrains/phpstorm-stubs": {
+        "version": "v2019.1"
     },
     "nette/bootstrap": {
         "version": "v3.0.0"
@@ -93,7 +99,7 @@
         "version": "0.3.4"
     },
     "phpstan/phpstan": {
-        "version": "0.11.8"
+        "version": "0.11.6"
     },
     "predis/predis": {
         "version": "v1.1.1"
@@ -109,6 +115,9 @@
     },
     "ramsey/uuid": {
         "version": "3.8.0"
+    },
+    "rector/rector": {
+        "version": "v0.5.3"
     },
     "sebastian/comparator": {
         "version": "3.0.2"
@@ -268,6 +277,9 @@
     },
     "symfony/yaml": {
         "version": "v4.3.0"
+    },
+    "symplify/package-builder": {
+        "version": "v6.0.2"
     },
     "webmozart/assert": {
         "version": "1.4.0"
