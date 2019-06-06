@@ -4,6 +4,11 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            $redisParams:
+                scheme: tcp
+                host: redis
+                port: 6379
 
     _instanceof:
         App\Blog\Application\CommandHandlerInterface:
@@ -23,6 +28,9 @@ services:
         public: true
 
     App\Blog\System:
+        public: true
+
+    App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter:
         public: true
 
     App\Symfony\Controller\:

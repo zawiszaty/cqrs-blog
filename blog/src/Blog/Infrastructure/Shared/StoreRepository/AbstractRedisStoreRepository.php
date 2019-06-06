@@ -1,0 +1,46 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Blog\Infrastructure\Shared\StoreRepository;
+
+use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
+use App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter;
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
+
+abstract class AbstractRedisStoreRepository
+{
+    /**
+     * @var RedisAdapter
+     */
+    private $redisAdapter;
+
+    protected $className;
+
+    public function __construct(RedisAdapter $redisAdapter)
+    {
+        $this->redisAdapter = $redisAdapter;
+    }
+
+    protected function save(AggregateRoot $aggregateRoot)
+    {
+        $this->redisAdapter->hmset(
+            $this->computeCategoryHashFor($aggregateRoot->getId()->toString()),
+            $aggregateRoot->serialize()
+        );
+    }
+
+    public function find(AggregateRootId $aggregateRootId): array
+    {
+        $data = $this->redisAdapter->hgetall(
+            $this->computeCategoryHashFor($aggregateRootId->toString())
+        );
+
+        return $data;
+    }
+
+    private function computeCategoryHashFor(string $id)
+    {
+        return sprintf('%s:%s', $this->className, $id);
+    }
+}

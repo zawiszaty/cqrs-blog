@@ -15,20 +15,34 @@ class Category extends AggregateRoot
      * @var Name
      */
     private $name;
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
 
     private function __construct(AggregateRootId $aggregateRootId, Name $name)
     {
-        $this->aggregateRootId = $aggregateRootId;
+        $this->id = $aggregateRootId;
         $this->name = $name;
     }
 
     public static function create(Name $name): self
     {
         $category = new self(AggregateRootId::withId(RamseyUuidAdapter::generate()), $name);
+
+        return $category;
+    }
+
+    public function serialize(): array
+    {
+        return [
+            'id' => $this->getId()->toString(),
+            'name' => $this->name->toString(),
+        ];
+    }
+
+    public static function unserialize(array $data): AggregateRoot
+    {
+        $category = new self(
+            AggregateRootId::withId($data['id']),
+            Name::withName($data['name'])
+        );
 
         return $category;
     }

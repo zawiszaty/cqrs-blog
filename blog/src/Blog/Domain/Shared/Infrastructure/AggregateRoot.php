@@ -6,7 +6,7 @@ namespace App\Blog\Domain\Shared\Infrastructure;
 
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 
-class AggregateRoot
+abstract class AggregateRoot
 {
     /**
      * @var AggregateRootId
@@ -14,10 +14,14 @@ class AggregateRoot
     protected $id;
 
     /**
-     * @return mixed
+     * @return AggregateRootId
      */
-    public function getId()
+    public function getId(): AggregateRootId
     {
         return $this->id;
     }
+
+    abstract public function serialize(): array;
+
+    abstract public static function unserialize(array $data): AggregateRoot;
 }

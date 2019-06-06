@@ -6,5 +6,5 @@ namespace App\Blog\Domain\Category;
 
 interface CategoryStoreRepositoryInterface
 {
-    public function store(Category $category);
+    public function store(Category $category): void;
 }
