@@ -31,4 +31,9 @@ class RedisCategoryStoreRepository extends AbstractRedisStoreRepository implemen
 
         return $category;
     }
+
+    public function remove(Category $category): void
+    {
+        $this->delete($category);
+    }
 }

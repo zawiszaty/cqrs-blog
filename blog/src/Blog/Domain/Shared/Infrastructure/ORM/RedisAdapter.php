@@ -56,4 +56,9 @@ class RedisAdapter implements ORMAdapterInterface
     {
         $this->client->flushall();
     }
+
+    public function del(string $hash): void
+    {
+        $this->client->del([$hash]);
+    }
 }

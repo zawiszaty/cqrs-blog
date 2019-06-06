@@ -34,6 +34,11 @@ abstract class AggregateRoot
         return $this->unCommittedEvent;
     }
 
+    public function clearEvent()
+    {
+        $this->unCommittedEvent = [];
+    }
+
     protected function __construct()
     {
     }

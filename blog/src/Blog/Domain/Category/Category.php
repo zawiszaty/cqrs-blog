@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Blog\Domain\Category;
 
 use App\Blog\Domain\Category\Event\CreateCategoryEvent;
+use App\Blog\Domain\Category\Event\DeleteCategoryEvent;
+use App\Blog\Domain\Category\Event\EditCategoryEvent;
 use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
 use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
@@ -26,10 +28,20 @@ class Category extends AggregateRoot
         return $category;
     }
 
+    public function edit(Name $name)
+    {
+        $this->record(new EditCategoryEvent($this->id, $name));
+    }
+
+    public function delete()
+    {
+        $this->record(new DeleteCategoryEvent($this->id));
+    }
+
     public static function unserialize(array $data): AggregateRoot
     {
         $category = new self();
-        $category->id = AggregateRootId::withId($data['id']);
+        $category->id = AggregateRootId::withId(RamseyUuidAdapter::fromString($data['id']));
         $category->name = Name::withName($data['name']);
 
         return $category;
@@ -39,6 +51,8 @@ class Category extends AggregateRoot
     {
         if ($event instanceof CreateCategoryEvent) {
             $this->id = $event->getId();
+            $this->name = $event->getName();
+        } elseif ($event instanceof EditCategoryEvent) {
             $this->name = $event->getName();
         }
     }

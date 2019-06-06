@@ -23,7 +23,7 @@ abstract class AbstractRedisStoreRepository
         $this->redisAdapter = $redisAdapter;
     }
 
-    protected function save(AggregateRoot $aggregateRoot)
+    protected function save(AggregateRoot $aggregateRoot): void
     {
         $events = $aggregateRoot->getUnCommittedEvent();
         /** @var Event $event */
@@ -33,6 +33,12 @@ abstract class AbstractRedisStoreRepository
                 $event->serialize()
             );
         }
+        $aggregateRoot->clearEvent();
+    }
+
+    protected function delete(AggregateRoot $aggregateRoot): void
+    {
+        $this->redisAdapter->del($this->computeCategoryHashFor($aggregateRoot->getId()->toString()));
     }
 
     public function find(AggregateRootId $aggregateRootId): array
