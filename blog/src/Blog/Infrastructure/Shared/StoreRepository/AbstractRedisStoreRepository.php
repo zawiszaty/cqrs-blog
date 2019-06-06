@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\Shared\StoreRepository;
 
 use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
+use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 
@@ -24,10 +25,14 @@ abstract class AbstractRedisStoreRepository
 
     protected function save(AggregateRoot $aggregateRoot)
     {
-        $this->redisAdapter->hmset(
-            $this->computeCategoryHashFor($aggregateRoot->getId()->toString()),
-            $aggregateRoot->serialize()
-        );
+        $events = $aggregateRoot->getUnCommittedEvent();
+        /** @var Event $event */
+        foreach ($events as $event) {
+            $this->redisAdapter->hmset(
+                $this->computeCategoryHashFor($aggregateRoot->getId()->toString()),
+                $event->serialize()
+            );
+        }
     }
 
     public function find(AggregateRootId $aggregateRootId): array

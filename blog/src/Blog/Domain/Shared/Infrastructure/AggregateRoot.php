@@ -14,6 +14,11 @@ abstract class AggregateRoot
     protected $id;
 
     /**
+     * @var array
+     */
+    protected $unCommittedEvent = [];
+
+    /**
      * @return AggregateRootId
      */
     public function getId(): AggregateRootId
@@ -21,7 +26,25 @@ abstract class AggregateRoot
         return $this->id;
     }
 
-    abstract public function serialize(): array;
+    /**
+     * @return array
+     */
+    public function getUnCommittedEvent(): array
+    {
+        return $this->unCommittedEvent;
+    }
+
+    protected function __construct()
+    {
+    }
 
     abstract public static function unserialize(array $data): AggregateRoot;
+
+    abstract public function apply(Event $event): void;
+
+    protected function record(Event $event): void
+    {
+        $this->unCommittedEvent[] = $event;
+        $this->apply($event);
+    }
 }
