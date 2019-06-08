@@ -14,12 +14,13 @@ make test
 ```
 ### Implementations
 - [x] CommandBus
-- [ ] QueryBus
-- [ ] Projection
-- [ ] Redis WriteModel
-- [ ] MySql ReadModel
+- [x] QueryBus
+- [x] Projection
+- [x] Redis WriteModel
+- [x] MySql ReadModel
 - [x] TDD
-- [ ] Unit Test
-- [ ] Integration Test
-- [ ] Functional Test
+- [x] Unit Test
+- [x] Integration Test
+- [x] Functional Test
+- [ ] React SSR Front
 - [ ] End to End Test

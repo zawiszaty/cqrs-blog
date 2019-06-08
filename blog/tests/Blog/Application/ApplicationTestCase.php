@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Application;
 
-use App\DataFixtures\AppFixtures;
 use App\Symfony\Kernel;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
+use Tests\Blog\DataFixtures\AppFixtures;
 
 class ApplicationTestCase extends TestCase
 {
@@ -25,7 +25,7 @@ class ApplicationTestCase extends TestCase
     /**
      * @var \Doctrine\ORM\EntityManager|object
      */
-    private $entityManager;
+    protected $entityManager;
 
     protected function setUp()
     {

@@ -46,6 +46,7 @@ abstract class AbstractRedisStoreRepository
     protected function delete(AggregateRoot $aggregateRoot): void
     {
         $this->redisAdapter->del($this->computeCategoryHashFor($aggregateRoot->getId()->toString()));
+        $this->eventDispatcher->dispatch($aggregateRoot->getUnCommittedEvent()[0], $aggregateRoot->getUnCommittedEvent()[0]::NAME);
     }
 
     public function find(AggregateRootId $aggregateRootId): array

@@ -25,6 +25,7 @@ class DeleteCategoryHandler implements CommandHandlerInterface
     {
         $category = $this->categoryStoreRepository
             ->get(AggregateRootId::withId(RamseyUuidAdapter::fromString($command->getId())));
+        $category->delete();
         $this->categoryStoreRepository->remove($category);
     }
 }
