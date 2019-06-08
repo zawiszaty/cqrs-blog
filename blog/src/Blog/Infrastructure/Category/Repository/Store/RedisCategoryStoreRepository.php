@@ -9,12 +9,13 @@ use App\Blog\Domain\Category\CategoryStoreRepositoryInterface;
 use App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Infrastructure\Shared\StoreRepository\AbstractRedisStoreRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class RedisCategoryStoreRepository extends AbstractRedisStoreRepository implements CategoryStoreRepositoryInterface
 {
-    public function __construct(RedisAdapter $redisAdapter)
+    public function __construct(RedisAdapter $redisAdapter, EventDispatcherInterface $eventDispatcher)
     {
-        parent::__construct($redisAdapter);
+        parent::__construct($redisAdapter, $eventDispatcher);
         $this->className = 'category';
     }
 

@@ -37,4 +37,19 @@ services:
         resource: '../src/Symfony/Controller'
         tags: ['controller.service_arguments']
 
+    app.projection.redis.add_category_projection:
+        class: App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.add_category_projection, method: onCreateCategoryEvent }
+
+    app.projection.redis.edit_category_projection:
+        class: App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.edit_category_projection, method: onEditCategoryEvent }
+
+    app.projection.redis.delete_category_projection:
+        class: App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection
+        tags:
+            - { name: kernel.event_listener, event: app.projection.redis.delete_category_projection, method: onDeleteCategoryEvent }
+
 

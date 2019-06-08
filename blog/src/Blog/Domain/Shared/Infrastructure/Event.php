@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Shared\Infrastructure;
 
-abstract class Event
+interface Event
 {
-    abstract public function serialize(): array;
+    public function serialize(): array;
 }

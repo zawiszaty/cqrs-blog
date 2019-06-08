@@ -8,6 +8,7 @@ use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
 use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\ORM\RedisAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class AbstractRedisStoreRepository
 {
@@ -17,10 +18,15 @@ abstract class AbstractRedisStoreRepository
     private $redisAdapter;
 
     protected $className;
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
-    public function __construct(RedisAdapter $redisAdapter)
+    public function __construct(RedisAdapter $redisAdapter, EventDispatcherInterface $eventDispatcher)
     {
         $this->redisAdapter = $redisAdapter;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     protected function save(AggregateRoot $aggregateRoot): void
@@ -32,6 +38,7 @@ abstract class AbstractRedisStoreRepository
                 $this->computeCategoryHashFor($aggregateRoot->getId()->toString()),
                 $event->serialize()
             );
+            $this->eventDispatcher->dispatch($event, $event::NAME);
         }
         $aggregateRoot->clearEvent();
     }

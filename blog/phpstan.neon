@@ -1,3 +1,6 @@
 parameters:
 	autoload_files:
 		- vendor/autoload.php
+	ignoreErrors:
+	    - '#Access to undefined constant App\\Blog\\\Domain\\Shared\\Infrastructure\\Event::#'
+	    - '#Method Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface::#'

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Category\Event;
 
-use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
+use Symfony\Contracts\EventDispatcher\Event;
 
-class EditCategoryEvent extends Event
+class EditCategoryEvent extends Event implements \App\Blog\Domain\Shared\Infrastructure\Event
 {
+    public const NAME = 'app.projection.redis.edit_category_projection';
+
     /**
      * @var AggregateRootId
      */

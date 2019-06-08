@@ -9,8 +9,10 @@
         "ramsey/uuid": "^3.8",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
+        "symfony/event-dispatcher": "4.3.*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "4.3.*",
+        "symfony/orm-pack": "^1.0",
         "symfony/serializer": "4.3.*",
         "symfony/yaml": "4.3.*"
     },
@@ -62,10 +64,12 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
         "friendsofphp/php-cs-fixer": "^2.15",
         "phpspec/phpspec": "^5.1",
         "rector/rector": "^0.5.3",
         "sensiolabs-de/deptrac-shim": "^0.5.0",
+        "symfony/maker-bundle": "^1.11",
         "symfony/phpunit-bridge": "4.3.*"
     }
 }
