@@ -1,5 +1,5 @@
 .PHONY: start
-start: stop composer up
+start: stop composer up db
 
 .PHONY: stop
 stop: ## stop environment
@@ -12,6 +12,12 @@ composer: ## spin up environment
 .PHONY: up
 up: ## up docker
 		docker-compose up -d
+
+.PHONY: db
+db: ## up db
+		docker-compose exec php bin/console d:d:d --if-exists --force
+		docker-compose exec php bin/console d:d:c
+		docker-compose exec php bin/console d:s:c
 
 .PHONY: php
 php: ## login to php container
