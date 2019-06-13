@@ -42,7 +42,7 @@ layer: ## layer
 
 .PHONY: phpunit
 phpunit: ## test
-		docker-compose exec php ./bin/phpunit
+		docker-compose exec php ./vendor/bin/phpunit
 
 .PHONY: test
 test: cs layer style phpunit

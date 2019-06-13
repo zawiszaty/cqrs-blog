@@ -42,7 +42,7 @@ class SystemTest extends TestCase
      */
     private $queryBus;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->commandBus = new CommandBus();

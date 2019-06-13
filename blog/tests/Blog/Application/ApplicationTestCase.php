@@ -32,7 +32,7 @@ class ApplicationTestCase extends TestCase
      */
     protected $system;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->kernel = new Kernel('test', true);

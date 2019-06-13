@@ -28,7 +28,7 @@ class CommandBusTest extends TestCase
      */
     private $commandBus;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->commandBus = new CommandBus();
     }
