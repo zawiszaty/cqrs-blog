@@ -35,8 +35,4 @@ abstract class AggregateRoot
 
         return $this->id;
     }
-
-    abstract public function serialize(): array;
-
-    abstract public function deSerialize(array $data): AggregateRoot;
 }

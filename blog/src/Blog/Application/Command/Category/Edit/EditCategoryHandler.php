@@ -5,30 +5,25 @@ declare(strict_types=1);
 namespace App\Blog\Application\Command\Category\Edit;
 
 use App\Blog\Application\CommandHandlerInterface;
+use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
-use App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EditCategoryHandler implements CommandHandlerInterface
 {
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryInterface
      */
-    private $categoryStoreRepository;
+    private $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryStoreRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->categoryStoreRepository = $categoryStoreRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function __invoke(EditCategoryCommand $command): void
     {
-        $category = $this->categoryStoreRepository->find($command->getId());
-
-        if (!$category) {
-            throw new NotFoundHttpException();
-        }
+        $category = $this->categoryRepository->find($command->getId());
         $category->edit(Name::withName($command->getName()));
-        $this->categoryStoreRepository->apply();
+        $this->categoryRepository->apply();
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Shared\ProjectionRepository;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -47,7 +47,7 @@ abstract class MysqlRepository
     /**
      * MysqlRepository constructor.
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->entityManager = $entityManager;
         $this->setRepository($this->class);
@@ -58,7 +58,7 @@ abstract class MysqlRepository
     /** @var EntityRepository */
     protected $repository;
     /**
-     * @var EntityManagerInterface
+     * @var ORMAdapterInterface
      */
     protected $entityManager;
 }

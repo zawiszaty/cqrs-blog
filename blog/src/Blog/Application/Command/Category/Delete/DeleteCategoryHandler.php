@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace App\Blog\Application\Command\Category\Delete;
 
 use App\Blog\Application\CommandHandlerInterface;
-use App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository;
+use App\Blog\Domain\Category\CategoryRepositoryInterface;
 
 class DeleteCategoryHandler implements CommandHandlerInterface
 {
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryInterface
      */
-    private $categoryStoreRepository;
+    private $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryStoreRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->categoryStoreRepository = $categoryStoreRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function __invoke(DeleteCategoryCommand $command): void
     {
-        $this->categoryStoreRepository->delete($command->getId());
+        $this->categoryRepository->delete($command->getId());
     }
 }

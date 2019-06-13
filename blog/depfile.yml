@@ -1,5 +1,31 @@
 paths:
   - ./src
 exclude_files:
-layers: []
-ruleset: []
+  - .*test.*
+layers:
+  - name: Application
+    collectors:
+      - type: className
+        regex: App\\Blog\\Application\\.*
+  - name: Infrastructure
+    collectors:
+      - type: className
+        regex: App\\Blog\\Infrastructure\\.*
+  - name: Domain
+    collectors:
+      - type: className
+        regex: App\\Blog\\Domain\\.*
+  - name: UI
+    collectors:
+      - type: className
+        regex: App\\Symfony\\.*
+ruleset:
+  Application:
+    - Domain
+  Domain:
+  Infrastructure:
+    - Domain
+    - Application
+  UI:
+    - Application
+    - Infrastructure

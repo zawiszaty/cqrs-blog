@@ -6,24 +6,24 @@ namespace App\Blog\Application\Command\Category\Create;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Domain\Category\Category;
+use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
-use App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository;
 
 class CreateCategoryHandler implements CommandHandlerInterface
 {
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryInterface
      */
-    private $categoryStoreRepository;
+    private $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryStoreRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->categoryStoreRepository = $categoryStoreRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function __invoke(CreateCategoryCommand $command): void
     {
         $category = Category::create(Name::withName($command->getName()));
-        $this->categoryStoreRepository->add($category);
+        $this->categoryRepository->add($category);
     }
 }

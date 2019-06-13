@@ -37,25 +37,6 @@ class Category extends AggregateRoot
         $this->name = $name;
     }
 
-    public function serialize(): array
-    {
-        if ($this->id instanceof AggregateRootId && $this->name instanceof Name) {
-            return [
-                'id' => $this->id->toString(),
-                'name' => $this->name->toString(),
-            ];
-        }
-        throw new \Exception();
-    }
-
-    public function deSerialize(array $data): AggregateRoot
-    {
-        return new self(
-            AggregateRootId::withId($data['id']),
-            Name::withName($data['name'])
-        );
-    }
-
     /**
      * @return Name
      */
