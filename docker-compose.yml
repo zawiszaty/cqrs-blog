@@ -13,7 +13,7 @@ services:
     links:
       - db
       - php
-      - redis
+
   php:
     build: ./docker/php
     container_name: cqrs-blog-php
@@ -22,14 +22,8 @@ services:
       - ./blog:/var/www/project
     links:
       - db
-      - redis
+
   db:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: admin
-
-  redis:
-    image: redis
-    container_name: cqrs-blog-redis
-    ports:
-      - 6379:6379
