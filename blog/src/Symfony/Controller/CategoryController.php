@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Symfony\Controller;
 
-use App\Symfony\Form\CategoryType;
+use App\Blog\Application\Query\Category\GetAll\GetAllCategoryQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,21 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends RestController
 {
     /**
-     * @Route("/category", name="add_category", methods={"GET", "POST"})
+     * @Route("/category/{page}/{limit}", name="categories", methods={"GET", "POST"})
      */
-    public function addCategoryAction(Request $request): Response
+    public function getAllCategoryAction(Request $request, int $page, int $limit): Response
     {
-        $form = $this->createForm(CategoryType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            dump($data);
-        }
+        $categories = $this->system->query(new GetAllCategoryQuery($page, $limit));
 
         return $this->render('category/category.html.twig', [
-            'form' => $form->createView(),
-            'props' => ['movies' => [
-            ]],
+            'props' => ['categories' => $this->serializer->serialize($categories, 'json')],
         ]);
     }
 }

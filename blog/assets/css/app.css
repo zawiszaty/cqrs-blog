@@ -1,3 +1,7 @@
 body {
-    background-color: lightgray;
+    background-color: red !important;
+}
+
+.container {
+    margin-top: 60px;
 }

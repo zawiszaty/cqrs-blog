@@ -9,11 +9,11 @@ class CategoryView
     /**
      * @var string
      */
-    private $id;
+    public $id;
     /**
      * @var string
      */
-    private $name;
+    public $name;
 
     /**
      * CategoryView constructor.
@@ -24,21 +24,6 @@ class CategoryView
     public function __construct(string $id, string $name)
     {
         $this->id = $id;
-        $this->name = $name;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function changeName(string $name)
-    {
         $this->name = $name;
     }
 }

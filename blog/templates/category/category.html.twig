@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ react_component('MovieList', {
-        "props": {
-            "movies": {
-
-            }
-        },
+    {{ react_component('CategoryList', {
+        "props": props,
     }) }}
 {% endblock %}

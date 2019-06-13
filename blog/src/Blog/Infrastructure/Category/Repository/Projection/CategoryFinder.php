@@ -24,7 +24,7 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);
-        $model = $qb->getQuery()->execute();
+        $model = $qb->getQuery()->getArrayResult();
         $qbCount = $this
             ->repository
             ->createQueryBuilder('category')
@@ -34,6 +34,16 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             'data' => $model,
             'total' => $count[0][1],
         ];
+
+        return $data;
+    }
+
+    private function mapToView(array $model): array
+    {
+        $data = [];
+        foreach ($model as $item) {
+            $data[] = new CategoryView($item['id'], $item['name']);
+        }
 
         return $data;
     }
