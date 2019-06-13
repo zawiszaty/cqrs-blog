@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Category;
 
-use App\Blog\Domain\Category\Event\CreateCategoryEvent;
-use App\Blog\Domain\Category\Event\DeleteCategoryEvent;
-use App\Blog\Domain\Category\Event\EditCategoryEvent;
 use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
-use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
@@ -16,44 +12,59 @@ use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 class Category extends AggregateRoot
 {
     /**
-     * @var Name
+     * @var Name|string
      */
     private $name;
 
+    private function __construct(AggregateRootId $aggregateRootId, Name $name)
+    {
+        parent::__construct($aggregateRootId);
+        $this->name = $name;
+    }
+
     public static function create(Name $name): self
     {
-        $category = new self();
-        $category->record(new CreateCategoryEvent(AggregateRootId::withId(RamseyUuidAdapter::generate()), $name));
+        $category = new self(
+            AggregateRootId::withId(RamseyUuidAdapter::generate()),
+            $name
+        );
 
         return $category;
     }
 
     public function edit(Name $name)
     {
-        $this->record(new EditCategoryEvent($this->id, $name));
+        $this->name = $name;
     }
 
-    public function delete()
+    public function serialize(): array
     {
-        $this->record(new DeleteCategoryEvent($this->id));
-    }
-
-    public static function unserialize(array $data): AggregateRoot
-    {
-        $category = new self();
-        $category->id = AggregateRootId::withId(RamseyUuidAdapter::fromString($data['id']));
-        $category->name = Name::withName($data['name']);
-
-        return $category;
-    }
-
-    public function apply(Event $event): void
-    {
-        if ($event instanceof CreateCategoryEvent) {
-            $this->id = $event->getId();
-            $this->name = $event->getName();
-        } elseif ($event instanceof EditCategoryEvent) {
-            $this->name = $event->getName();
+        if ($this->id instanceof AggregateRootId && $this->name instanceof Name) {
+            return [
+                'id' => $this->id->toString(),
+                'name' => $this->name->toString(),
+            ];
         }
+        throw new \Exception();
+    }
+
+    public function deSerialize(array $data): AggregateRoot
+    {
+        return new self(
+            AggregateRootId::withId($data['id']),
+            Name::withName($data['name'])
+        );
+    }
+
+    /**
+     * @return Name
+     */
+    public function getName(): Name
+    {
+        if (is_string($this->name)) {
+            return Name::withName($this->name);
+        }
+
+        return $this->name;
     }
 }

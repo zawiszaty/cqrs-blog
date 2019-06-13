@@ -1,4 +1,4 @@
-App\Blog\Infrastructure\Category\Repository\Projection\CategoryView:
+App\Blog\Domain\Category\Category:
   type: entity
   table: category
   uniqueConstraints:

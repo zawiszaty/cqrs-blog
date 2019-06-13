@@ -29,4 +29,9 @@ class AggregateRootId
     {
         return $this->id->toString();
     }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }

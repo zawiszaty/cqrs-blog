@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Category\Repository\Projection;
 
+use App\Blog\Domain\Category\Category;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -11,11 +12,11 @@ class CategoryRepository extends MysqlRepository
 {
     public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->class = CategoryView::class;
+        $this->class = Category::class;
         parent::__construct($entityManager);
     }
 
-    public function add(CategoryView $postView): void
+    public function add(Category $postView): void
     {
         $this->register($postView);
     }
@@ -28,9 +29,9 @@ class CategoryRepository extends MysqlRepository
         $this->entityManager->flush();
     }
 
-    public function find(string $id): ?CategoryView
+    public function find(string $id): ?Category
     {
-        /** @var CategoryView $category */
+        /** @var Category $category */
         $category = $this->repository->find($id);
 
         return $category;

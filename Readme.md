@@ -15,9 +15,6 @@ make test
 ### Implementations
 - [x] CommandBus
 - [x] QueryBus
-- [x] Projection
-- [x] Redis WriteModel
-- [x] MySql ReadModel
 - [x] TDD
 - [x] Unit Test
 - [x] Integration Test
