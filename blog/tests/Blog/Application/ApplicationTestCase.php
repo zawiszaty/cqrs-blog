@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Application;
 
+use App\Blog\System;
 use App\Symfony\Kernel;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
@@ -26,6 +27,10 @@ class ApplicationTestCase extends TestCase
      * @var \Doctrine\ORM\EntityManager|object
      */
     protected $entityManager;
+    /**
+     * @var System
+     */
+    protected $system;
 
     protected function setUp()
     {
@@ -39,5 +44,6 @@ class ApplicationTestCase extends TestCase
         $purger = new ORMPurger($this->entityManager);
         $executor = new ORMExecutor($this->entityManager, $purger);
         $executor->execute($loader->getFixtures());
+        $this->system = $this->container->get(System::class);
     }
 }

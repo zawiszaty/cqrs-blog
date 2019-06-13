@@ -5,22 +5,10 @@ declare(strict_types=1);
 namespace App\Blog\Application\Command\Category\Edit;
 
 use App\Blog\Domain\Category\Category;
-use App\Blog\System;
 use Tests\Blog\Application\ApplicationTestCase;
 
 class EditCategoryHandlerTest extends ApplicationTestCase
 {
-    /**
-     * @var System
-     */
-    private $system;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->system = $this->container->get(System::class);
-    }
-
     public function test_it_handele_method()
     {
         /** @var Category $category */
