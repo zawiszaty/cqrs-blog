@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog;
 
+use App\Blog\Application\Collection;
 use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
 use App\Blog\Infrastructure\Shared\ServiceBus\QueryBus;
 
@@ -29,7 +30,7 @@ class System
         $this->commandBus->handle($command);
     }
 
-    public function query(object $query): array
+    public function query(object $query): Collection
     {
         return $this->queryBus->handle($query);
     }

@@ -4,18 +4,13 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        bind:
-            $redisParams:
-                scheme: tcp
-                host: redis
-                port: 6379
 
     _instanceof:
         App\Blog\Application\CommandHandlerInterface:
             tags: ['app.command_handler']
 
         App\Blog\Application\QueryHandlerInterface:
-            tags: ['app.query']
+            tags: ['app.query_handler']
 
     App\:
         resource: '../src/*'

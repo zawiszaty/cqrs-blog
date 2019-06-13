@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Blog\Infrastructure\Shared\ServiceBus;
 
+use App\Blog\Application\Collection;
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Application\QueryHandlerInterface;
 use App\Blog\Infrastructure\Shared\ServiceBus\CommandBus;
@@ -15,9 +16,9 @@ class TestCommand
 
 class TestHandler implements CommandHandlerInterface, QueryHandlerInterface
 {
-    public function __invoke(object $test): array
+    public function __invoke(object $test): Collection
     {
-        return [];
+        return new Collection(1, 1, 1, null);
     }
 }
 

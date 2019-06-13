@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Shared\ServiceBus;
 
+use App\Blog\Application\Collection;
 use App\Blog\Application\QueryHandlerInterface;
 
 class QueryBus
@@ -21,11 +22,11 @@ class QueryBus
     /**
      * @param object $command
      *
-     * @return array
+     * @return Collection
      *
      * @throws HandlerNotFoundException
      */
-    public function handle(object $command): array
+    public function handle(object $command): Collection
     {
         /** @var callable $handler */
         $handler = $this->commandToHandler(\get_class($command));
