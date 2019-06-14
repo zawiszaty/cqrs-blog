@@ -6,6 +6,7 @@ namespace App\Symfony\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
@@ -47,7 +48,9 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
             'password' => $request->request->get('password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
-        $request->getSession()->set(
+        /** @var SessionInterface $session */
+        $session = $request->getSession();
+        $session->set(
             Security::LAST_USERNAME,
             $credentials['username']
         );
@@ -62,8 +65,7 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
             throw new InvalidCsrfTokenException();
         }
 
-        // Load / create our user however you need.
-        // You can do this by calling the user provider, or with custom logic here.
+        /** @var UserInterface|null $user */
         $user = $userProvider->loadUserByUsername($credentials['username']);
 
         if (!$user) {
@@ -81,7 +83,9 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        /** @var SessionInterface $session */
+        $session = $request->getSession();
+        if ($targetPath = $this->getTargetPath($session, $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 

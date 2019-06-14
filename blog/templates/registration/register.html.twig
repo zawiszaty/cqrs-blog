@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {{ form_start(registrationForm, {'attr': {'class': 'text-center border border-light p-5'} } ) }}
+    <p class="h4 mb-4">Sign up</p>
+    <div class="form-row mb-4">
+        <div class="col">
+            {{ form_row(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'username'}} ) }}
+            <div class="invalid-feedback">
+                Please choose a username.
+            </div>
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            {{ form_row(registrationForm.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'password'}} ) }}
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            {{ form_row(registrationForm.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'repeat password'}} ) }}
+        </div>
+    </div>
+    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+    <!-- Social register -->
+    <p>You are a member?
+        <a href="{{ path('login') }}">Login</a>
+    </p>
+
+    {{ form_end(registrationForm) }}
+{% endblock %}

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginController extends RestController
+class SecurityController extends RestController
 {
     /**
      * @Route("/login", name="login")
@@ -18,6 +18,7 @@ class LoginController extends RestController
     {
         if ($this->getUser()) {
             $this->addFlash('info', 'You are logged');
+
             return new RedirectResponse($this->generateUrl('home'));
         }
         // get the login error if there is one
@@ -34,6 +35,7 @@ class LoginController extends RestController
     public function logout(): Response
     {
         $this->addFlash('info', 'You are not logouted');
+
         return new RedirectResponse($this->generateUrl('home'));
     }
 }

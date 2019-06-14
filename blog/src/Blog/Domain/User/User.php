@@ -4,77 +4,56 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\User;
 
+use App\Blog\Domain\Shared\Infrastructure\AggregateRoot;
+use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
+use App\Blog\Domain\User\ValueObject\Roles;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface
+class User extends AggregateRoot implements UserInterface
 {
-    /**
-     * @var string
-     */
-    private $id;
-
     /**
      * @var string
      */
     private $username;
 
     /**
-     * @var string
+     * @var Roles|array
      */
-    private $roles = [];
+    private $roles;
 
     /**
      * @var string
      */
     private $password;
 
-    public function getId(): ?string
+    private function __construct(AggregateRootId $aggregateRootId, string $username, Roles $roles, string $password)
     {
-        return $this->id;
+        parent::__construct($aggregateRootId);
+        $this->username = $username;
+        $this->roles = $roles;
+        $this->password = $password;
     }
 
-    /**
-     * @param string $id
-     */
-    public function setId(string $id): void
+    public static function create(string $username, Roles $roles, string $password)
     {
-        $this->id = $id;
+        $user = new self(AggregateRootId::withId(RamseyUuidAdapter::generate()), $username, $roles, $password);
+
+        return $user;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUsername(): string
     {
         return (string) $this->username;
     }
 
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        if (is_array($this->roles)) {
+            return Roles::withRoles($this->roles)->getRoles();
+        }
 
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
+        return $this->roles->getRoles();
     }
 
     /**
@@ -83,13 +62,6 @@ class User implements UserInterface
     public function getPassword(): string
     {
         return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
     }
 
     /**
