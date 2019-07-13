@@ -6,6 +6,8 @@ namespace App\Blog\Application\Command\Category\Delete;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
+use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 
 class DeleteCategoryHandler implements CommandHandlerInterface
 {
@@ -21,6 +23,10 @@ class DeleteCategoryHandler implements CommandHandlerInterface
 
     public function __invoke(DeleteCategoryCommand $command): void
     {
-        $this->categoryRepository->delete($command->getId());
+        $category = $this->categoryRepository->find(
+            AggregateRootId::withId(RamseyUuidAdapter::fromString($command->getId()))
+        );
+        $category->delete();
+        $this->categoryRepository->store($category);
     }
 }

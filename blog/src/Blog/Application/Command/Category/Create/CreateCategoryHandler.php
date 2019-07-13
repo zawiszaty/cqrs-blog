@@ -24,6 +24,6 @@ class CreateCategoryHandler implements CommandHandlerInterface
     public function __invoke(CreateCategoryCommand $command): void
     {
         $category = Category::create(Name::withName($command->getName()));
-        $this->categoryRepository->add($category);
+        $this->categoryRepository->store($category);
     }
 }

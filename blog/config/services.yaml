@@ -12,6 +12,9 @@ services:
         App\Blog\Application\QueryHandlerInterface:
             tags: ['app.query_handler']
 
+        App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository:
+            public: true
+
     App\:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
@@ -23,6 +26,12 @@ services:
         public: true
 
     App\Blog\System:
+        public: true
+
+    App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository:
+        public: true
+
+    App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection:
         public: true
 
     App\Symfony\Controller\:

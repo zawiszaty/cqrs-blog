@@ -6,6 +6,8 @@ namespace App\Blog\Application\Command\Category\Edit;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Domain\Category\CategoryRepositoryInterface;
+use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
+use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 
 class EditCategoryHandler implements CommandHandlerInterface
@@ -22,8 +24,10 @@ class EditCategoryHandler implements CommandHandlerInterface
 
     public function __invoke(EditCategoryCommand $command): void
     {
-        $category = $this->categoryRepository->find($command->getId());
+        $category = $this->categoryRepository->find(
+            AggregateRootId::withId(RamseyUuidAdapter::fromString($command->getId()))
+        );
         $category->edit(Name::withName($command->getName()));
-        $this->categoryRepository->apply();
+        $this->categoryRepository->store($category);
     }
 }

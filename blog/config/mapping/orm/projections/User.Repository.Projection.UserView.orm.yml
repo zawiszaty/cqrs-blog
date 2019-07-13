@@ -1,4 +1,4 @@
-App\Blog\Domain\User\User:
+App\Blog\Infrastructure\User\Repository\Projection\UserView:
   type: entity
   table: user
   uniqueConstraints:
