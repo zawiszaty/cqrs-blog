@@ -37,14 +37,4 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
 
         return $data;
     }
-
-    private function mapToView(array $model): array
-    {
-        $data = [];
-        foreach ($model as $item) {
-            $data[] = new CategoryView($item['id'], $item['name']);
-        }
-
-        return $data;
-    }
 }

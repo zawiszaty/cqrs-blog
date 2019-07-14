@@ -11,12 +11,11 @@ class GetAllCategoryHandlerTest extends ApplicationTestCase
 {
     public function test_it_invoke()
     {
-//        /** @var Collection $data */
-//        $data = $this->system->query(new GetAllCategoryQuery(1, 10));
-//        $this->assertNotNull($data);
-//        $this->assertSame($data->page, 1);
-//        $this->assertSame($data->limit, 10);
-//        $this->assertSame($data->total, 20);
-        $this->assertSame(1, 1);
+        /** @var Collection $data */
+        $data = $this->system->query(new GetAllCategoryQuery(1, 10));
+        $this->assertNotNull($data);
+        $this->assertSame($data->page, 1);
+        $this->assertSame($data->limit, 10);
+        $this->assertSame($data->total, 20);
     }
 }
