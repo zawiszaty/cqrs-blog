@@ -4,45 +4,35 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Category\Repository\Projection;
 
-use App\Blog\Domain\Category\Category;
-use App\Blog\Domain\Category\CategoryRepositoryInterface;
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
-use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
-use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
+use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryRepository extends MysqlRepository implements CategoryRepositoryInterface
 {
-    public function __construct(ORMAdapterInterface $entityManager, ProjectionProcessor $projectionProcessor)
+    public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->class = CategoryView::class;
-        parent::__construct($entityManager, $projectionProcessor);
+        parent::__construct($entityManager);
     }
 
-    public function store(Category $category): void
+    public function store(CategoryView $category): void
     {
-        foreach ($category->getUnCommitedEvent() as $event) {
-            $this->events[] = $event;
-        }
+        $this->register($category);
         $this->apply();
     }
 
-    public function find(AggregateRootId $id): Category
+    public function find(AggregateRootId $id): CategoryView
     {
-        /** @var CategoryView|null $categoryView */
-        $categoryView = $this->repository->find($id);
+        /** @var CategoryView $categoryView */
+        $categoryView = $this->repository->find($id->toString());
 
-        if (!$categoryView) {
-            throw new NotFoundHttpException();
-        }
-        $category = Category::withData([
-           'id' => AggregateRootId::withId(RamseyUuidAdapter::fromString($categoryView->id)),
-           'name' => Name::withName($categoryView->name),
-        ]);
+        return $categoryView;
+    }
 
-        return $category;
+    public function remove(CategoryView $category): void
+    {
+        $this->entityManager->remove($category);
     }
 }

@@ -34,6 +34,9 @@ services:
     App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection:
         public: true
 
+    App\Blog\Infrastructure\Category\Repository\Store\CategoryStoreRepository:
+        public: true
+
     App\Symfony\Controller\:
         resource: '../src/Symfony/Controller'
         tags: ['controller.service_arguments']

@@ -6,7 +6,7 @@ namespace App\Blog\Domain\Category;
 
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 
-interface CategoryRepositoryInterface
+interface CategoryStoreRepositoryInterface
 {
     public function find(AggregateRootId $id): Category;
 

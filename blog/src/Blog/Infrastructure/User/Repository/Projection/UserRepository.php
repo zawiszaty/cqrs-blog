@@ -7,16 +7,15 @@ namespace App\Blog\Infrastructure\User\Repository\Projection;
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
 use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserRepositoryInterface;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserRepository extends MysqlRepository implements UserRepositoryInterface
 {
-    public function __construct(ORMAdapterInterface $entityManager, ProjectionProcessor $projectionProcessor)
+    public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->class = UserView::class;
-        parent::__construct($entityManager, $projectionProcessor);
+        parent::__construct($entityManager);
     }
 
     public function add(User $postView): void

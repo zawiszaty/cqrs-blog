@@ -6,15 +6,14 @@ namespace App\Blog\Infrastructure\Category\Repository\Projection;
 
 use App\Blog\Domain\Category\CategoryFinderInterface;
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 
 class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
 {
-    public function __construct(ORMAdapterInterface $entityManager, ProjectionProcessor $projectionProcessor)
+    public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->class = CategoryView::class;
-        parent::__construct($entityManager, $projectionProcessor);
+        parent::__construct($entityManager);
     }
 
     public function getAll(int $page, int $limit): array

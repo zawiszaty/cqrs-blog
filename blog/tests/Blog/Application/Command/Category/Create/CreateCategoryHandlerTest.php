@@ -8,6 +8,7 @@ use App\Blog\Application\Command\Category\Create\CreateCategoryCommand;
 use App\Blog\Domain\Category\Events\CategoryWasCreatedEvent;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
+use App\Blog\Infrastructure\Category\Repository\Store\CategoryStoreRepository;
 use Tests\Blog\Application\ApplicationTestCase;
 
 class CreateCategoryHandlerTest extends ApplicationTestCase
@@ -16,7 +17,7 @@ class CreateCategoryHandlerTest extends ApplicationTestCase
     {
         $this->assertNull($this->system->command(new CreateCategoryCommand('testowa nazwa')));
         /** @var CategoryRepository $repository */
-        $repository = $this->container->get(CategoryRepository::class);
+        $repository = $this->container->get(CategoryStoreRepository::class);
         $event = $repository->getEvents()[0];
         $this->assertInstanceOf(CategoryWasCreatedEvent::class, $event);
         /** @var CategoryView $result */

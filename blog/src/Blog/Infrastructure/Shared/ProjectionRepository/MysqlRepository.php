@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\Shared\ProjectionRepository;
 
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -19,10 +18,6 @@ abstract class MysqlRepository
      * @var array
      */
     protected $events = [];
-    /**
-     * @var ProjectionProcessor
-     */
-    private $projectionProcessor;
 
     public function register(object $model): void
     {
@@ -32,9 +27,7 @@ abstract class MysqlRepository
 
     public function apply(): void
     {
-        foreach ($this->events as $event) {
-            $this->projectionProcessor->process($event);
-        }
+        $this->entityManager->flush();
     }
 
     protected function oneOrException(QueryBuilder $queryBuilder)
@@ -59,11 +52,10 @@ abstract class MysqlRepository
     /**
      * MysqlRepository constructor.
      */
-    public function __construct(ORMAdapterInterface $entityManager, ProjectionProcessor $projectionProcessor)
+    public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->entityManager = $entityManager;
         $this->setRepository($this->class);
-        $this->projectionProcessor = $projectionProcessor;
     }
 
     /** @var string */

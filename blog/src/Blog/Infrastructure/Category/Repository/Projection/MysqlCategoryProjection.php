@@ -7,26 +7,18 @@ namespace App\Blog\Infrastructure\Category\Repository\Projection;
 use App\Blog\Domain\Category\Events\CategoryWasCreatedEvent;
 use App\Blog\Domain\Category\Events\CategoryWasDeletedEvent;
 use App\Blog\Domain\Category\Events\CategoryWasEditedEvent;
-use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
-use Doctrine\ORM\EntityRepository;
+use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 
 class MysqlCategoryProjection
 {
     /**
-     * @var ORMAdapterInterface
+     * @var CategoryRepositoryInterface
      */
-    private $ORMAdapter;
-    /**
-     * @var EntityRepository
-     */
-    private $repository;
+    private $categoryRepository;
 
-    public function __construct(ORMAdapterInterface $ORMAdapter)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->ORMAdapter = $ORMAdapter;
-        /** @var EntityRepository $repository */
-        $repository = $this->ORMAdapter->getRepository(CategoryView::class);
-        $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function create(CategoryWasCreatedEvent $event): void
@@ -35,23 +27,22 @@ class MysqlCategoryProjection
             $event->getId()->toString(),
             $event->getName()->toString()
         );
-        $this->ORMAdapter->persist($categoryView);
-        $this->ORMAdapter->flush();
+        $this->categoryRepository->store($categoryView);
     }
 
     public function edit(CategoryWasEditedEvent $event): void
     {
         /** @var CategoryView $category */
-        $category = $this->repository->find($event->getId()->toString());
+        $category = $this->categoryRepository->find($event->getId());
         $category->name = $event->getName()->toString();
-        $this->ORMAdapter->flush();
+        $this->categoryRepository->apply();
     }
 
     public function delete(CategoryWasDeletedEvent $event): void
     {
         /** @var CategoryView $category */
-        $category = $this->repository->find($event->getId()->toString());
-        $this->ORMAdapter->remove($category);
-        $this->ORMAdapter->flush();
+        $category = $this->categoryRepository->find($event->getId());
+        $this->categoryRepository->remove($category);
+        $this->categoryRepository->apply();
     }
 }

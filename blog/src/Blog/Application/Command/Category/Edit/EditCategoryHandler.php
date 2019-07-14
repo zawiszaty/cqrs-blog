@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Blog\Application\Command\Category\Edit;
 
 use App\Blog\Application\CommandHandlerInterface;
-use App\Blog\Domain\Category\CategoryRepositoryInterface;
+use App\Blog\Domain\Category\CategoryStoreRepositoryInterface;
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
@@ -13,11 +13,11 @@ use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 class EditCategoryHandler implements CommandHandlerInterface
 {
     /**
-     * @var CategoryRepositoryInterface
+     * @var CategoryStoreRepositoryInterface
      */
     private $categoryRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryStoreRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
