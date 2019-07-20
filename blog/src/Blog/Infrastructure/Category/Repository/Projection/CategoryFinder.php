@@ -23,12 +23,18 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);
-        $model = $qb->getQuery()->getArrayResult();
+        $model = $qb->getQuery()
+            ->useQueryCache(true)
+            ->useResultCache(true, 3600)
+            ->getArrayResult();
         $qbCount = $this
             ->repository
             ->createQueryBuilder('category')
             ->select('count(category.id)');
-        $count = $qbCount->getQuery()->execute();
+        $count = $qbCount->getQuery()
+            ->useQueryCache(true)
+            ->useResultCache(true, 3600)
+            ->execute();
         $data = [
             'data' => $model,
             'total' => $count[0][1],

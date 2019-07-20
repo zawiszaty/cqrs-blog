@@ -10,6 +10,15 @@ doctrine:
 
     url: '%env(resolve:DATABASE_URL)%'
   orm:
+    metadata_cache_driver:
+      type: 'service'
+      id: doctrine.cache.memcached
+    query_cache_driver:
+      type: 'service'
+      id: doctrine.cache.memcached
+    result_cache_driver:
+      type: 'service'
+      id: doctrine.cache.memcached
     auto_generate_proxy_classes: true
     naming_strategy: doctrine.orm.naming_strategy.underscore
     auto_mapping: true
@@ -20,3 +29,4 @@ doctrine:
         dir: '%kernel.project_dir%/config/mapping/orm/projections'
         prefix: 'App\Blog\Infrastructure'
         alias: Projections
+

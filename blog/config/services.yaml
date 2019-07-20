@@ -1,4 +1,8 @@
 parameters:
+    memcached.servers:
+        - memcached://memcached1:11211
+        - memcached://memcached2:11211
+    memcached.config: {distribution: 'consistent', compression: true}
 
 services:
     _defaults:
@@ -40,6 +44,16 @@ services:
     App\Symfony\Controller\:
         resource: '../src/Symfony/Controller'
         tags: ['controller.service_arguments']
+
+    memcached.doctrine:
+        class: Memcached
+        factory: Symfony\Component\Cache\Adapter\MemcachedAdapter::createConnection
+        arguments: ['%memcached.servers%', '%memcached.config%']
+
+    doctrine.cache.memcached:
+        class: Doctrine\Common\Cache\MemcachedCache
+        calls:
+            - [ setMemcached, [ '@memcached.doctrine' ] ]
 
 
 

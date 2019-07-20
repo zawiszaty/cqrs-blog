@@ -18,6 +18,16 @@ RUN apt-get install -y \
   && docker-php-ext-configure zip --with-libzip \
   && docker-php-ext-install zip
 
+RUN set -ex \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y libmemcached-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && MEMCACHED="`mktemp -d`" \
+    && curl -skL https://github.com/php-memcached-dev/php-memcached/archive/master.tar.gz | tar zxf - --strip-components 1 -C $MEMCACHED \
+    && docker-php-ext-configure $MEMCACHED \
+    && docker-php-ext-install $MEMCACHED \
+    && rm -rf $MEMCACHED
+
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Set debconf to run non-interactively

@@ -29,3 +29,8 @@ services:
       MYSQL_ROOT_PASSWORD: admin
     ports:
       - 3306:3306
+
+  memcached:
+    image: memcached:latest
+    ports:
+      - "11211:11211"
