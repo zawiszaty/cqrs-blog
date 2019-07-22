@@ -1,7 +1,6 @@
 parameters:
     memcached.servers:
-        - memcached://memcached1:11211
-        - memcached://memcached2:11211
+        - memcached://memcached:11211
     memcached.config: {distribution: 'consistent', compression: true}
 
 services:
