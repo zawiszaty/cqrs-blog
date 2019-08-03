@@ -28,7 +28,7 @@ class GetAllCategoryHandler implements QueryHandlerInterface
             $allCategoryQuery->getPage(),
             $allCategoryQuery->getLimit(),
             (int) $data['total'],
-            $data['data'],
+            $data['data']
         );
     }
 }

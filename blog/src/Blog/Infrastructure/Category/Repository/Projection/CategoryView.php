@@ -16,14 +16,14 @@ class CategoryView
     public $name;
 
     /**
-     * CategoryView constructor.
-     *
-     * @param string $id
-     * @param string $name
+     * @var \DateTime
      */
+    public $createdAt;
+
     public function __construct(string $id, string $name)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->createdAt = new \DateTime();
     }
 }

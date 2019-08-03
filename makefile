@@ -1,5 +1,5 @@
 .PHONY: start
-start: stop composer up db
+start: stop composer yarn up db client server
 
 .PHONY: stop
 stop: ## stop environment
@@ -8,6 +8,18 @@ stop: ## stop environment
 .PHONY: composer
 composer: ## spin up environment
 		docker-compose run php php composer.phar install
+
+.PHONY: yarn
+yarn: ## spin up environment
+		docker-compose run php yarn install
+
+.PHONY: client
+client: ## run webpack client rendering
+		docker-compose exec php npx encore dev --watch &
+
+.PHONY: server
+server: ## run webpack server rendering
+		docker-compose exec php npx encore dev --watch --config webpack.config.ssr.js &
 
 .PHONY: up
 up: ## up docker

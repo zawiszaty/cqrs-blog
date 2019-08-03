@@ -19,4 +19,10 @@ App\Blog\Infrastructure\Category\Repository\Projection\CategoryView:
       length: 45
       options:
         fixed: false
+    createdAt:
+      type: datetime
+      nullable: false
+      length: 45
+      options:
+        fixed: false
 lifecycleCallbacks: {  }
