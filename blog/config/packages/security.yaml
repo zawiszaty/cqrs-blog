@@ -1,6 +1,6 @@
 security:
     encoders:
-      App\Blog\Domain\User\User:
+        App\Blog\Infrastructure\User\Repository\Projection\UserView:
             algorithm: bcrypt
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Blog\Domain\User\User
+                class: App\Blog\Infrastructure\User\Repository\Projection\UserView
                 property: username
     firewalls:
         dev:

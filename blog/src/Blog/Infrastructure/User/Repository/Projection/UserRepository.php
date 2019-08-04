@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\User\Repository\Projection;
 
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
-use App\Blog\Domain\User\User;
-use App\Blog\Domain\User\UserRepositoryInterface;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -18,21 +16,21 @@ class UserRepository extends MysqlRepository implements UserRepositoryInterface
         parent::__construct($entityManager);
     }
 
-    public function add(User $postView): void
+    public function add(UserView $userView): void
     {
-        $this->register($postView);
+        $this->register($userView);
     }
 
     public function delete(string $id): void
     {
-        $post = $this->find($id);
-        $this->entityManager->remove($post);
+        $user = $this->find($id);
+        $this->entityManager->remove($user);
         $this->entityManager->flush();
     }
 
-    public function find(string $id): User
+    public function find(string $id): UserView
     {
-        /** @var User|null $user */
+        /** @var UserView|null $user */
         $user = $this->repository->find($id);
 
         if (!$user) {

@@ -33,12 +33,23 @@ class User extends AggregateRoot
         $user = new self();
         $user->record(
             new UserWasCreatedEvent(
-            AggregateRootId::withId(RamseyUuidAdapter::generate()),
-            $username,
-            $roles,
-            $password
-        )
+                AggregateRootId::withId(RamseyUuidAdapter::generate()),
+                $username,
+                $roles,
+                $password
+            )
         );
+
+        return $user;
+    }
+
+    public static function withData(array $data): self
+    {
+        $user = new self();
+        $user->id = $data['id'];
+        $user->username = $data['username'];
+        $user->roles = $data['roles'];
+        $user->password = $data['password'];
 
         return $user;
     }

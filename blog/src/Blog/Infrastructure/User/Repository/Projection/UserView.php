@@ -73,7 +73,7 @@ class UserView implements UserInterface
      */
     public function getSalt(): ?string
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**

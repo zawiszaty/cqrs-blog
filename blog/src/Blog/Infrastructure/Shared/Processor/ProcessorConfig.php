@@ -7,7 +7,9 @@ namespace App\Blog\Infrastructure\Shared\Processor;
 use App\Blog\Domain\Category\Events\CategoryWasCreatedEvent;
 use App\Blog\Domain\Category\Events\CategoryWasDeletedEvent;
 use App\Blog\Domain\Category\Events\CategoryWasEditedEvent;
+use App\Blog\Domain\User\Events\UserWasCreatedEvent;
 use App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection;
+use App\Blog\Infrastructure\User\Repository\Projection\MysqlUserProjection;
 
 class ProcessorConfig
 {
@@ -22,6 +24,7 @@ class ProcessorConfig
             CategoryWasCreatedEvent::class => MysqlCategoryProjection::class.':create',
             CategoryWasEditedEvent::class => MysqlCategoryProjection::class.':edit',
             CategoryWasDeletedEvent::class => MysqlCategoryProjection::class.':delete',
+            UserWasCreatedEvent::class => MysqlUserProjection::class.':create',
         ];
     }
 

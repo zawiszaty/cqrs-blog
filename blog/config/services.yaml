@@ -20,7 +20,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Symfony/DTO,Tests,Kernel.php}'
 
     App\Blog\Infrastructure\Shared\ServiceBus\QueryBus:
         public: true
@@ -32,6 +32,12 @@ services:
         public: true
 
     App\Blog\Infrastructure\Category\Repository\Projection\CategoryRepository:
+        public: true
+
+    App\Blog\Infrastructure\User\Repository\Projection\UserRepository:
+        public: true
+
+    App\Blog\Infrastructure\User\Repository\Projection\MysqlUserProjection:
         public: true
 
     App\Blog\Infrastructure\Category\Repository\Projection\MysqlCategoryProjection:
@@ -53,6 +59,10 @@ services:
         class: Doctrine\Common\Cache\MemcachedCache
         calls:
             - [ setMemcached, [ '@memcached.doctrine' ] ]
-
+    App\Symfony\ParamConverter:
+        arguments:
+            - '@Doctrine\ORM\EntityManagerInterface'
+        tags:
+            - { name: request.param_converter, priority: 0, converter: entity-to-dto-converter }
 
 
