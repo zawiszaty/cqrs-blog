@@ -3588,7 +3588,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.3.1",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -6428,16 +6428,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "4badea737c34a6c8e2921fca0f6a1cbe4f724f2f"
+                "reference": "1bf4b5a7cf5fea43288e9283d340f7e1d5b69cae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/4badea737c34a6c8e2921fca0f6a1cbe4f724f2f",
-                "reference": "4badea737c34a6c8e2921fca0f6a1cbe4f724f2f",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/1bf4b5a7cf5fea43288e9283d340f7e1d5b69cae",
+                "reference": "1bf4b5a7cf5fea43288e9283d340f7e1d5b69cae",
                 "shasum": ""
             },
             "require": {
@@ -6494,7 +6494,7 @@
                     "homepage": "https://ciaranmcnulty.com/"
                 }
             ],
-            "description": "Specification-oriented BDD framework for PHP 5.6+",
+            "description": "Specification-oriented BDD framework for PHP 7.1+",
             "homepage": "http://phpspec.net/",
             "keywords": [
                 "BDD",
@@ -6505,7 +6505,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2018-10-29T08:12:52+00:00"
+            "time": "2019-08-05T10:24:38+00:00"
         },
         {
             "name": "phpspec/prophecy",
