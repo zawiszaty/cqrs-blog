@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Category\Repository\Projection;
 
-use App\Blog\Domain\Category\CategoryFinderInterface;
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 
@@ -24,16 +23,12 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);
         $model = $qb->getQuery()
-            ->useQueryCache(true)
-            ->useResultCache(true, 3600)
             ->getArrayResult();
         $qbCount = $this
             ->repository
             ->createQueryBuilder('category')
             ->select('count(category.id)');
         $count = $qbCount->getQuery()
-            ->useQueryCache(true)
-            ->useResultCache(true, 3600)
             ->execute();
         $data = [
             'data' => $model,
@@ -41,5 +36,33 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
         ];
 
         return $data;
+    }
+
+    public function findOneByName(string $name): ?CategoryView
+    {
+        /** @var CategoryView $categoryView */
+        $categoryView = $this
+            ->repository
+            ->createQueryBuilder('category')
+            ->where('category.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $categoryView;
+    }
+
+    public function get(string $id): ?CategoryView
+    {
+        /** @var CategoryView $categoryView */
+        $categoryView = $this
+            ->repository
+            ->createQueryBuilder('category')
+            ->where('category.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $categoryView;
     }
 }

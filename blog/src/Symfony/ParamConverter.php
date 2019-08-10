@@ -37,8 +37,7 @@ class ParamConverter implements ParamConverterInterface
         $query->setMaxResults(1);
         $result = $query->getQuery()->getArrayResult();
 
-        if (0 === count($result) )
-        {
+        if (0 === count($result)) {
             throw new NotFoundHttpException();
         }
         $data = explode('::', $request->attributes->get('_controller'));

@@ -22,6 +22,7 @@ layers:
 ruleset:
   Application:
     - Domain
+    - Infrastructure
   Domain:
   Infrastructure:
     - Domain
@@ -29,3 +30,4 @@ ruleset:
   UI:
     - Application
     - Infrastructure
+    - Domain

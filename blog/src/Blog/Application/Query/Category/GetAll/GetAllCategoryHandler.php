@@ -6,7 +6,7 @@ namespace App\Blog\Application\Query\Category\GetAll;
 
 use App\Blog\Application\Collection;
 use App\Blog\Application\QueryHandlerInterface;
-use App\Blog\Domain\Category\CategoryFinderInterface;
+use App\Blog\Infrastructure\Category\Repository\Projection\CategoryFinderInterface;
 
 class GetAllCategoryHandler implements QueryHandlerInterface
 {
