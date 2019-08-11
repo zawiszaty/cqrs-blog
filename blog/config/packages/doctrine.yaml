@@ -12,13 +12,13 @@ doctrine:
   orm:
     metadata_cache_driver:
       type: 'service'
-      id: doctrine.cache.memcached
+      id: doctrine.cache.redis
     query_cache_driver:
       type: 'service'
-      id: doctrine.cache.memcached
+      id: doctrine.cache.redis
     result_cache_driver:
       type: 'service'
-      id: doctrine.cache.memcached
+      id: doctrine.cache.redis
     auto_generate_proxy_classes: true
     naming_strategy: doctrine.orm.naming_strategy.underscore
     auto_mapping: true

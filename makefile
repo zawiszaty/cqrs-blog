@@ -1,5 +1,5 @@
 .PHONY: start
-start: stop composer yarn up db
+start: stop composer up db
 
 .PHONY: stop
 stop: ## stop environment
@@ -8,10 +8,6 @@ stop: ## stop environment
 .PHONY: composer
 composer: ## spin up environment
 		docker-compose run php php composer.phar install
-
-.PHONY: yarn
-yarn: ## spin up environment
-		docker-compose run php yarn install
 
 .PHONY: up
 up: ## up docker

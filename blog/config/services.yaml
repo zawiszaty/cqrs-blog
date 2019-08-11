@@ -55,10 +55,11 @@ services:
         factory: Symfony\Component\Cache\Adapter\MemcachedAdapter::createConnection
         arguments: ['%memcached.servers%', '%memcached.config%']
 
-    doctrine.cache.memcached:
-        class: Doctrine\Common\Cache\MemcachedCache
-        calls:
-            - [ setMemcached, [ '@memcached.doctrine' ] ]
+    doctrine.cache.redis:
+        class: '%snc_redis.doctrine_cache_predis.class%'
+        arguments:
+            - '@snc_redis.default'
+
     App\Symfony\ParamConverter:
         arguments:
             - '@Doctrine\ORM\EntityManagerInterface'

@@ -30,7 +30,9 @@ services:
     ports:
       - 3306:3306
 
-  memcached:
-    image: memcached:latest
+  redis:
+    image: 'bitnami/redis:latest'
     ports:
-      - "11211:11211"
+      - 6379:6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes

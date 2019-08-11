@@ -22,13 +22,13 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);
-        $model = $qb->getQuery()
+        $model = $qb->getQuery()->setCacheable(true)
             ->getArrayResult();
         $qbCount = $this
             ->repository
             ->createQueryBuilder('category')
             ->select('count(category.id)');
-        $count = $qbCount->getQuery()
+        $count = $qbCount->getQuery()->setCacheable(true)
             ->execute();
         $data = [
             'data' => $model,
@@ -46,7 +46,7 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->where('category.name = :name')
             ->setParameter('name', $name)
-            ->getQuery()
+            ->getQuery()->setCacheable(true)
             ->getOneOrNullResult();
 
         return $categoryView;
@@ -60,7 +60,7 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->where('category.id = :id')
             ->setParameter('id', $id)
-            ->getQuery()
+            ->getQuery()->setCacheable(true)
             ->getOneOrNullResult();
 
         return $categoryView;
