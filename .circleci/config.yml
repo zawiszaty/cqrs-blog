@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: .
-          paths: ./
+        root: .
+        paths: ./
 
   composer:
     working_directory: ~/zawiszaty/cqrs-blog
