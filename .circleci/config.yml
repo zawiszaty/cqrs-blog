@@ -106,6 +106,9 @@ workflows:
       - build-php-image:
           requires:
             - checkout-code
+      - build-nginx-image:
+          requires:
+            - checkout-code
       - backend-tests:
           requires:
             - build-php-image
