@@ -1,10 +1,14 @@
 version: 2
 jobs:
-  test:
+  build:
+    machine: true
     steps:
-      - run:
-          name: run project
-          command: 'make start'
+      - checkout
+      - run: make start
+  test:
+    machine: true
+    steps:
       - run:
           name: run test
           command: 'make test'
+      - run: make test
