@@ -60,10 +60,5 @@ services:
         arguments:
             - '@snc_redis.default'
 
-    App\Symfony\ParamConverter:
-        arguments:
-            - '@Doctrine\ORM\EntityManagerInterface'
-        tags:
-            - { name: request.param_converter, priority: 0, converter: entity-to-dto-converter }
 
 

@@ -18,6 +18,7 @@ db: ## up db
 		docker-compose exec php bin/console d:d:d --if-exists --force
 		docker-compose exec php bin/console d:d:c
 		docker-compose exec php bin/console d:s:c
+		docker-compose exec php bin/console d:f:l -n
 
 .PHONY: php
 php: ## login to php container

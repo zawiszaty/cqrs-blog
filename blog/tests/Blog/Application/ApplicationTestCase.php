@@ -6,13 +6,9 @@ namespace Tests\Blog\Application;
 
 use App\Blog\System;
 use App\Symfony\Kernel;
-use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use Doctrine\Common\DataFixtures\Loader;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
-use Tests\Blog\DataFixtures\AppFixtures;
 
 class ApplicationTestCase extends TestCase
 {
@@ -33,6 +29,10 @@ class ApplicationTestCase extends TestCase
      * @var EntityManager
      */
     protected $entityManager;
+    /**
+     * @var \Doctrine\DBAL\Connection|object
+     */
+    private $connection;
 
     protected function setUp(): void
     {
@@ -42,11 +42,12 @@ class ApplicationTestCase extends TestCase
         $this->container = $this->kernel->getContainer();
         $this->system = $this->container->get(System::class);
         $this->entityManager = $this->container->get('doctrine.orm.entity_manager');
-        $this->entityManager = $this->container->get('doctrine.orm.entity_manager');
-        $loader = new Loader();
-        $loader->addFixture(new AppFixtures());
-        $purger = new ORMPurger($this->entityManager);
-        $executor = new ORMExecutor($this->entityManager, $purger);
-        $executor->execute($loader->getFixtures());
+        $this->connection = $this->entityManager->getConnection();
+        $this->connection->beginTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->connection->rollBack();
     }
 }

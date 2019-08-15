@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Blog\DataFixtures;
+namespace App\Blog\Infrastructure\Shared\Fixtures;
 
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
-use App\Blog\Domain\User\User;
-use App\Blog\Domain\User\ValueObject\Roles;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {

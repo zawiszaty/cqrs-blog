@@ -123,12 +123,6 @@
     "jetbrains/phpstorm-stubs": {
         "version": "v2019.1"
     },
-    "limenius/liform": {
-        "version": "v0.12.0"
-    },
-    "limenius/liform-bundle": {
-        "version": "v0.13.0"
-    },
     "limenius/react-bundle": {
         "version": "v3.0.1"
     },
@@ -206,6 +200,9 @@
     },
     "phpstan/phpstan": {
         "version": "0.11.6"
+    },
+    "phpstan/phpstan-phpunit": {
+        "version": "0.11.2"
     },
     "phpunit/php-code-coverage": {
         "version": "7.0.5"
@@ -290,18 +287,6 @@
     },
     "sebastian/version": {
         "version": "2.0.1"
-    },
-    "sensio/framework-extra-bundle": {
-        "version": "5.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.2",
-            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
-        },
-        "files": [
-            "config/packages/sensio_framework_extra.yaml"
-        ]
     },
     "sensiolabs-de/deptrac-shim": {
         "version": "0.5.0"
@@ -503,19 +488,6 @@
     "symfony/stopwatch": {
         "version": "v4.3.0"
     },
-    "symfony/translation": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
-        },
-        "files": [
-            "config/packages/translation.yaml",
-            "translations/.gitignore"
-        ]
-    },
     "symfony/translation-contracts": {
         "version": "v1.1.2"
     },
@@ -601,9 +573,6 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
-    },
-    "zawiszaty/auto-dto": {
-        "version": "v1.0.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"
