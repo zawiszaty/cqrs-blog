@@ -10,6 +10,7 @@
         "nacmartin/phpexecjs": "^2.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.8",
+        "sensio/framework-extra-bundle": "^5.4",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
         "symfony/event-dispatcher": "4.3.*",
