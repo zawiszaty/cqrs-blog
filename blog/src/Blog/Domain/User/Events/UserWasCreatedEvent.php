@@ -6,7 +6,9 @@ namespace App\Blog\Domain\User\Events;
 
 use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
+use App\Blog\Domain\User\ValueObject\Password;
 use App\Blog\Domain\User\ValueObject\Roles;
+use App\Blog\Domain\User\ValueObject\UserName;
 
 class UserWasCreatedEvent extends Event
 {
@@ -16,7 +18,7 @@ class UserWasCreatedEvent extends Event
     private $id;
 
     /**
-     * @var string
+     * @var UserName
      */
     private $username;
 
@@ -26,19 +28,11 @@ class UserWasCreatedEvent extends Event
     private $roles;
 
     /**
-     * @var string
+     * @var Password
      */
     private $password;
 
-    /**
-     * UserWasCreatedEvent constructor.
-     *
-     * @param AggregateRootId $id
-     * @param string          $username
-     * @param Roles           $roles
-     * @param string          $password
-     */
-    public function __construct(AggregateRootId $id, string $username, Roles $roles, string $password)
+    public function __construct(AggregateRootId $id, UserName $username, Roles $roles, Password $password)
     {
         $this->id = $id;
         $this->username = $username;
@@ -46,34 +40,22 @@ class UserWasCreatedEvent extends Event
         $this->password = $password;
     }
 
-    /**
-     * @return AggregateRootId
-     */
     public function getId(): AggregateRootId
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getUsername(): string
+    public function getUsername(): UserName
     {
         return $this->username;
     }
 
-    /**
-     * @return Roles
-     */
     public function getRoles(): Roles
     {
         return $this->roles;
     }
 
-    /**
-     * @return string
-     */
-    public function getPassword(): string
+    public function getPassword(): Password
     {
         return $this->password;
     }

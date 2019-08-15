@@ -22,9 +22,9 @@ class MysqlUserProjection
     {
         $userView = new UserView(
             $createdEvent->getId()->toString(),
-            $createdEvent->getUsername(),
+            $createdEvent->getUsername()->toString(),
             $createdEvent->getRoles()->getRoles(),
-            $createdEvent->getPassword()
+            $createdEvent->getPassword()->toString()
         );
         $this->userRepository->add($userView);
     }

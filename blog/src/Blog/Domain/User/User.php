@@ -9,26 +9,28 @@ use App\Blog\Domain\Shared\Infrastructure\Event;
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\User\Events\UserWasCreatedEvent;
+use App\Blog\Domain\User\ValueObject\Password;
 use App\Blog\Domain\User\ValueObject\Roles;
+use App\Blog\Domain\User\ValueObject\UserName;
 
 class User extends AggregateRoot
 {
     /**
-     * @var string
+     * @var UserName
      */
     private $username;
 
     /**
-     * @var Roles|array
+     * @var Roles
      */
     private $roles;
 
     /**
-     * @var string
+     * @var Password
      */
     private $password;
 
-    public static function create(string $username, Roles $roles, string $password)
+    public static function create(UserName $username, Roles $roles, Password $password)
     {
         $user = new self();
         $user->record(

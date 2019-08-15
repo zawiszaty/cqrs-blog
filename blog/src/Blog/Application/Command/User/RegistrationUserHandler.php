@@ -8,7 +8,9 @@ use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Domain\User\Role;
 use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
+use App\Blog\Domain\User\ValueObject\Password;
 use App\Blog\Domain\User\ValueObject\Roles;
+use App\Blog\Domain\User\ValueObject\UserName;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationUserHandler implements CommandHandlerInterface
@@ -33,9 +35,9 @@ class RegistrationUserHandler implements CommandHandlerInterface
         /** @var string $password */
         $password = password_hash($command->getPassword(), PASSWORD_BCRYPT);
         $user = User::create(
-            $command->getUsername(),
+            UserName::withUserName($command->getUsername()),
             Roles::withRoles([Role::User]),
-            $password
+            Password::withPassword($password)
         );
         $this->userRepository->store($user);
     }
