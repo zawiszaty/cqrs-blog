@@ -6,3 +6,15 @@ jobs:
       - checkout
       - run: make start
       - run: make test
+  test:
+    machine: true
+    steps:
+      - run: make test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
