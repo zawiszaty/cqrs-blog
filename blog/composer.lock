@@ -6180,18 +6180,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -6227,18 +6227,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Library for handling version information and constraints",
@@ -6678,16 +6678,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.11.13",
+            "version": "0.11.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "493d12d4a98ba0d2a0b8e576d80e65c8e8068d08"
+                "reference": "1be5b3a706db16ac472a4c40ec03cf4c810b118d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/493d12d4a98ba0d2a0b8e576d80e65c8e8068d08",
-                "reference": "493d12d4a98ba0d2a0b8e576d80e65c8e8068d08",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1be5b3a706db16ac472a4c40ec03cf4c810b118d",
+                "reference": "1be5b3a706db16ac472a4c40ec03cf4c810b118d",
                 "shasum": ""
             },
             "require": {
@@ -6749,7 +6749,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-08-13T13:05:56+00:00"
+            "time": "2019-08-18T20:51:53+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -6909,8 +6909,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "FilterIterator implementation that filters files based on a list of suffixes.",
@@ -6951,8 +6951,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Simple template engine.",
@@ -7000,8 +7000,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -7145,16 +7145,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "v0.5.9",
+            "version": "v0.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "2c67698a219b44a8421e9393cd8cb95a98d755d1"
+                "reference": "3b482e51380d9b6efb0101a9421d37c70f4a330a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/2c67698a219b44a8421e9393cd8cb95a98d755d1",
-                "reference": "2c67698a219b44a8421e9393cd8cb95a98d755d1",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/3b482e51380d9b6efb0101a9421d37c70f4a330a",
+                "reference": "3b482e51380d9b6efb0101a9421d37c70f4a330a",
                 "shasum": ""
             },
             "require": {
@@ -7164,10 +7164,10 @@
                 "jetbrains/phpstorm-stubs": "^2019.1",
                 "nette/robot-loader": "^3.1",
                 "nette/utils": "^2.5|^3.0",
-                "nikic/php-parser": "^4.2.2",
+                "nikic/php-parser": "^4.2.3",
                 "php": "^7.1",
-                "phpstan/phpdoc-parser": "^0.3.4",
-                "phpstan/phpstan": "^0.11.6",
+                "phpstan/phpdoc-parser": "^0.3.5",
+                "phpstan/phpstan": "^0.11.13",
                 "phpstan/phpstan-phpunit": "^0.11.2",
                 "sebastian/diff": "^3.0",
                 "symfony/console": "^3.4|^4.2",
@@ -7194,51 +7194,53 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.5-dev"
+                    "dev-master": "0.6-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Rector\\": "src",
-                    "Rector\\Celebrity\\": "packages/Celebrity/src",
+                    "Rector\\Architecture\\": "packages/Architecture/src",
                     "Rector\\BetterPhpDocParser\\": "packages/BetterPhpDocParser/src",
-                    "Rector\\ConsoleDiffer\\": "packages/ConsoleDiffer/src",
-                    "Rector\\CodingStyle\\": "packages/CodingStyle/src",
-                    "Rector\\DeadCode\\": "packages/DeadCode/src",
-                    "Rector\\Guzzle\\": "packages/Guzzle/src",
-                    "Rector\\CodeQuality\\": "packages/CodeQuality/src",
-                    "Rector\\NetteToSymfony\\": "packages/NetteToSymfony/src",
-                    "Rector\\DomainDrivenDesign\\": "packages/DomainDrivenDesign/src",
-                    "Rector\\NodeTypeResolver\\": "packages/NodeTypeResolver/src",
-                    "Rector\\Symfony\\": "packages/Symfony/src",
                     "Rector\\CakePHP\\": "packages/CakePHP/src",
+                    "Rector\\Celebrity\\": "packages/Celebrity/src",
+                    "Rector\\CodeQuality\\": "packages/CodeQuality/src",
+                    "Rector\\CodingStyle\\": "packages/CodingStyle/src",
+                    "Rector\\ConsoleDiffer\\": "packages/ConsoleDiffer/src",
+                    "Rector\\DeadCode\\": "packages/DeadCode/src",
+                    "Rector\\Doctrine\\": "packages/Doctrine/src",
+                    "Rector\\DomainDrivenDesign\\": "packages/DomainDrivenDesign/src",
+                    "Rector\\ElasticSearchDSL\\": "packages/ElasticSearchDSL/src",
+                    "Rector\\FileSystemRector\\": "packages/FileSystemRector/src",
+                    "Rector\\Guzzle\\": "packages/Guzzle/src",
+                    "Rector\\Laravel\\": "packages/Laravel/src",
+                    "Rector\\Legacy\\": "packages/Legacy/src",
+                    "Rector\\MysqlToMysqli\\": "packages/MysqlToMysqli/src",
+                    "Rector\\NetteTesterToPHPUnit\\": "packages/NetteTesterToPHPUnit/src",
+                    "Rector\\NetteToSymfony\\": "packages/NetteToSymfony/src",
+                    "Rector\\Nette\\": "packages/Nette/src",
+                    "Rector\\NodeTypeResolver\\": "packages/NodeTypeResolver/src",
+                    "Rector\\PHPStan\\": "packages/PHPStan/src",
+                    "Rector\\PHPUnitSymfony\\": "packages/PHPUnitSymfony/src",
+                    "Rector\\PHPUnit\\": "packages/PHPUnit/src",
+                    "Rector\\PSR4\\": "packages/PSR4/src",
+                    "Rector\\PhpParser\\": "packages/PhpParser/src",
+                    "Rector\\PhpSpecToPHPUnit\\": "packages/PhpSpecToPHPUnit/src",
                     "Rector\\Php\\": "packages/Php/src",
                     "Rector\\RemovingStatic\\": "packages/RemovingStatic/src",
-                    "Rector\\Silverstripe\\": "packages/Silverstripe/src",
+                    "Rector\\Restoration\\": "packages/Restoration/src",
+                    "Rector\\SOLID\\": "packages/SOLID/src",
                     "Rector\\Sensio\\": "packages/Sensio/src",
+                    "Rector\\Shopware\\": "packages/Shopware/src",
+                    "Rector\\Silverstripe\\": "packages/Silverstripe/src",
                     "Rector\\Sylius\\": "packages/Sylius/src",
-                    "Rector\\PHPStan\\": "packages/PHPStan/src",
-                    "Rector\\PHPUnit\\": "packages/PHPUnit/src",
+                    "Rector\\SymfonyCodeQuality\\": "packages/SymfonyCodeQuality/src",
+                    "Rector\\SymfonyPHPUnit\\": "packages/SymfonyPHPUnit/src",
+                    "Rector\\Symfony\\": "packages/Symfony/src",
                     "Rector\\Twig\\": "packages/Twig/src",
                     "Rector\\TypeDeclaration\\": "packages/TypeDeclaration/src",
-                    "Rector\\MysqlToMysqli\\": "packages/MysqlToMysqli/src",
-                    "Rector\\PhpParser\\": "packages/PhpParser/src",
-                    "Rector\\Doctrine\\": "packages/Doctrine/src",
-                    "Rector\\FileSystemRector\\": "packages/FileSystemRector/src",
-                    "Rector\\ContributorTools\\": "packages/ContributorTools/src",
-                    "Rector\\Laravel\\": "packages/Laravel/src",
-                    "Rector\\PhpSpecToPHPUnit\\": "packages/PhpSpecToPHPUnit/src",
-                    "Rector\\Shopware\\": "packages/Shopware/src",
-                    "Rector\\NetteTesterToPHPUnit\\": "packages/NetteTesterToPHPUnit/src",
-                    "Rector\\Nette\\": "packages/Nette/src",
-                    "Rector\\SOLID\\": "packages/SOLID/src",
-                    "Rector\\Legacy\\": "packages/Legacy/src",
-                    "Rector\\ElasticSearchDSL\\": "packages/ElasticSearchDSL/src",
-                    "Rector\\SymfonyPHPUnit\\": "packages/SymfonyPHPUnit/src",
-                    "Rector\\Architecture\\": "packages/Architecture/src",
-                    "Rector\\PHPUnitSymfony\\": "packages/PHPUnitSymfony/src",
-                    "Rector\\SymfonyCodeQuality\\": "packages/SymfonyCodeQuality/src",
-                    "Rector\\Restoration\\": "packages/Restoration/src"
+                    "Rector\\Utils\\DocumentationGenerator\\": "utils/DocumentationGenerator/src",
+                    "Rector\\Utils\\RectorGenerator\\": "utils/RectorGenerator/src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -7265,7 +7267,7 @@
                 "instant refactoring",
                 "instant upgrades"
             ],
-            "time": "2019-08-01T13:53:04+00:00"
+            "time": "2019-08-25T11:10:55+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -7874,8 +7876,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
@@ -7917,8 +7919,8 @@
             "authors": [
                 {
                     "name": "Simon Mönch",
-                    "email": "simon.moench@sensiolabs.de",
-                    "role": "maintainer"
+                    "role": "maintainer",
+                    "email": "simon.moench@sensiolabs.de"
                 }
             ],
             "description": "deptrac phar distribution",
@@ -8245,12 +8247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Symplify/PackageBuilder.git",
-                "reference": "bd961b17c8e5467940c47836666d921bce17d1dd"
+                "reference": "f531e03f87c89b26605f1cc1022160e398108ba1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Symplify/PackageBuilder/zipball/bd961b17c8e5467940c47836666d921bce17d1dd",
-                "reference": "bd961b17c8e5467940c47836666d921bce17d1dd",
+                "url": "https://api.github.com/repos/Symplify/PackageBuilder/zipball/f531e03f87c89b26605f1cc1022160e398108ba1",
+                "reference": "f531e03f87c89b26605f1cc1022160e398108ba1",
                 "shasum": ""
             },
             "require": {
@@ -8319,8 +8321,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
