@@ -6,23 +6,19 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "beberlei/assert": "^3.2",
-        "limenius/react-bundle": "^3.0",
-        "nacmartin/phpexecjs": "^2.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.8",
         "sensio/framework-extra-bundle": "^5.4",
+        "snc/redis-bundle": "^3.1",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
-        "symfony/event-dispatcher": "4.3.*",
         "symfony/flex": "^1.1",
         "symfony/form": "4.3.*",
         "symfony/framework-bundle": "4.3.*",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.3.*",
-        "symfony/serializer": "4.3.*",
         "symfony/twig-bundle": "4.3.*",
         "symfony/validator": "4.3.*",
-        "symfony/webpack-encore-bundle": "^1.6",
         "symfony/yaml": "4.3.*"
     },
     "config": {
@@ -78,8 +74,10 @@
         "phpspec/phpspec": "^5.1",
         "rector/rector": "^0.5.3",
         "sensiolabs-de/deptrac-shim": "^0.5.0",
+        "symfony/browser-kit": "4.3.*",
+        "symfony/css-selector": "4.3.*",
         "symfony/maker-bundle": "^1.11",
-        "symfony/profiler-pack": "^1.0",
-        "phpunit/phpunit": "^8"
+        "symfony/phpunit-bridge": "^4.3",
+        "symfony/profiler-pack": "^1.0"
     }
 }

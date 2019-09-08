@@ -8,9 +8,13 @@
          bootstrap="config/bootstrap.php"
 >
     <php>
-        <ini name="error_reporting" value="-1" />
+        <ini name="error_reporting" value="1" />
         <server name="APP_ENV" value="test" force="true" />
-        <server name="SHELL_VERBOSITY" value="-1" />
+        <server name="KERNEL_CLASS" value="App\Symfony\Kernel" />
+        <server name="SHELL_VERBOSITY" value="1" />
+        <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
+        <env name="SYMFONY_PHPUNIT_VERSION" value="7.5"/>
+
     </php>
 
     <testsuites>
@@ -24,4 +28,15 @@
             <directory>src</directory>
         </whitelist>
     </filter>
+
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener">
+            <arguments>
+                <array>
+                    <!-- set this option to 0 to disable the DebugClassLoader integration -->
+                    <element key="debug-class-loader"><integer>0</integer></element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners>
 </phpunit>

@@ -6,7 +6,6 @@ namespace App\Symfony\Controller;
 
 use App\Blog\System;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class RestController extends AbstractController
 {
@@ -14,14 +13,9 @@ class RestController extends AbstractController
      * @var System
      */
     protected $system;
-    /**
-     * @var SerializerInterface
-     */
-    protected $serializer;
 
-    public function __construct(System $system, SerializerInterface $serializer)
+    public function __construct(System $system)
     {
         $this->system = $system;
-        $this->serializer = $serializer;
     }
 }

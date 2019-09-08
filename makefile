@@ -16,9 +16,13 @@ up: ## up docker
 .PHONY: db
 db: ## up db
 		docker-compose exec php bin/console d:d:d --if-exists --force
+		docker-compose exec php bin/console d:d:d --if-exists --force --env=test
 		docker-compose exec php bin/console d:d:c
+		docker-compose exec php bin/console d:d:c --env=test
 		docker-compose exec php bin/console d:s:c
+		docker-compose exec php bin/console d:s:c --env=test
 		docker-compose exec php bin/console d:f:l -n
+		docker-compose exec php bin/console d:f:l -n --env=test
 
 .PHONY: php
 php: ## login to php container
@@ -43,7 +47,7 @@ layer: ## layer
 
 .PHONY: phpunit
 phpunit: ## test
-		docker-compose exec php ./vendor/bin/phpunit
+		docker-compose exec php ./bin/phpunit
 
 .PHONY: test
 test: cs layer style phpunit

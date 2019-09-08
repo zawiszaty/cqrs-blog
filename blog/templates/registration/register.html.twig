@@ -8,21 +8,38 @@
     <p class="h4 mb-4">Sign up</p>
     <div class="form-row mb-4">
         <div class="col">
-            {{ form_row(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'username'}} ) }}
-            <div class="invalid-feedback">
-                Please choose a username.
-            </div>
+            {% if form_errors(registrationForm.username) is empty %}
+                {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'username'}} ) }}
+            {% else %}
+                {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control is-invalid', 'placeholder': 'username'}} ) }}
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
+            {% endif %}
         </div>
     </div>
     <div class="form-row mb-4">
         <div class="col">
-            {{ form_row(registrationForm.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'password'}} ) }}
+            {% if form_errors(registrationForm.plainPassword.first) is empty %}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'password'}} ) }}
+            {% else %}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'form-control is-invalid', 'placeholder': 'password'}} ) }}
+                <div class="invalid-feedback">
+                    {{ form_errors(registrationForm.plainPassword.first) }}
+                </div>
+            {% endif %}
         </div>
     </div>
     <div class="form-row mb-4">
         <div class="col">
-            {{ form_row(registrationForm.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'repeat password'}} ) }}
-        </div>
+            {% if form_errors(registrationForm.plainPassword.second) is empty %}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'password'}} ) }}
+            {% else %}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'form-control is-invalid', 'placeholder': 'password'}} ) }}
+                <div class="invalid-feedback">
+                    {{ form_errors(registrationForm.plainPassword.second) }}
+                </div>
+            {% endif %}        </div>
     </div>
     <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
     <!-- Social register -->

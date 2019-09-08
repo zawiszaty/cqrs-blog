@@ -5,22 +5,11 @@ declare(strict_types=1);
 namespace Tests\Blog\Application;
 
 use App\Blog\System;
-use App\Symfony\Kernel;
 use Doctrine\ORM\EntityManager;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\DependencyInjection\Container;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ApplicationTestCase extends TestCase
+class ApplicationTestCase extends WebTestCase
 {
-    /**
-     * @var Kernel
-     */
-    private $kernel;
-    /**
-     * @var Container
-     */
-    protected $container;
-
     /**
      * @var System
      */
@@ -37,11 +26,10 @@ class ApplicationTestCase extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->kernel = new Kernel('test', true);
-        $this->kernel->boot();
-        $this->container = $this->kernel->getContainer();
-        $this->system = $this->container->get(System::class);
-        $this->entityManager = $this->container->get('doctrine.orm.entity_manager');
+        self::bootKernel();
+
+        $this->system = self::$container->get(System::class);
+        $this->entityManager = self::$container->get('doctrine.orm.entity_manager');
         $this->connection = $this->entityManager->getConnection();
         $this->connection->beginTransaction();
     }

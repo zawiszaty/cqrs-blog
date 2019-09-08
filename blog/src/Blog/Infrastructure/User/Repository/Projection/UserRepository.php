@@ -39,4 +39,12 @@ class UserRepository extends MysqlRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function findOneBy(array $data): ?UserView
+    {
+        /** @var UserView|null $userView */
+        $userView = $this->repository->findOneBy($data);
+
+        return $userView;
+    }
 }

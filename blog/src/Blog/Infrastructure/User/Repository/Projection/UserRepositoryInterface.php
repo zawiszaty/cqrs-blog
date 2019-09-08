@@ -13,4 +13,6 @@ interface UserRepositoryInterface
     public function find(string $id): UserView;
 
     public function apply(): void;
+
+    public function findOneBy(array $data): ?UserView;
 }

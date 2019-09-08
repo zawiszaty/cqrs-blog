@@ -6,12 +6,12 @@ namespace App\Blog\Application\Command\User;
 
 use App\Blog\Application\CommandHandlerInterface;
 use App\Blog\Domain\User\Role;
+use App\Blog\Domain\User\Service\PasswordEncoder;
 use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
 use App\Blog\Domain\User\ValueObject\Password;
 use App\Blog\Domain\User\ValueObject\Roles;
 use App\Blog\Domain\User\ValueObject\UserName;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationUserHandler implements CommandHandlerInterface
 {
@@ -20,11 +20,11 @@ class RegistrationUserHandler implements CommandHandlerInterface
      */
     private $userRepository;
     /**
-     * @var UserPasswordEncoderInterface
+     * @var PasswordEncoder
      */
     private $passwordEncoder;
 
-    public function __construct(UserStoreRepositoryInterface $userRepository, UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserStoreRepositoryInterface $userRepository, PasswordEncoder $passwordEncoder)
     {
         $this->userRepository = $userRepository;
         $this->passwordEncoder = $passwordEncoder;
@@ -33,7 +33,7 @@ class RegistrationUserHandler implements CommandHandlerInterface
     public function __invoke(RegistrationUserCommand $command): void
     {
         /** @var string $password */
-        $password = password_hash($command->getPassword(), PASSWORD_BCRYPT);
+        $password = $this->passwordEncoder->encode($command->getPassword());
         $user = User::create(
             UserName::withUserName($command->getUsername()),
             Roles::withRoles([Role::User]),

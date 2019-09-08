@@ -35,4 +35,12 @@ class CategoryRepository extends MysqlRepository implements CategoryRepositoryIn
     {
         $this->entityManager->remove($category);
     }
+
+    public function findOneBy(array $data): ?CategoryView
+    {
+        /** @var CategoryView|null $categoryView */
+        $categoryView = $this->repository->findOneBy($data);
+
+        return $categoryView;
+    }
 }

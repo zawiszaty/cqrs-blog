@@ -17,7 +17,7 @@ class CreateCategoryHandlerTest extends ApplicationTestCase
     {
         $this->assertNull($this->system->command(new CreateCategoryCommand('testowa nazwa')));
         /** @var CategoryRepository $repository */
-        $repository = $this->container->get(CategoryStoreRepository::class);
+        $repository = self::$container->get(CategoryStoreRepository::class);
         $event = $repository->getEvents()[0];
         $this->assertInstanceOf(CategoryWasCreatedEvent::class, $event);
         /** @var CategoryView $result */

@@ -10,6 +10,7 @@ use App\Blog\Application\Command\Category\Edit\EditCategoryCommand;
 use App\Blog\Application\Query\Category\GetAll\GetAllCategoryQuery;
 use App\Blog\Domain\Category\Exception\CategoryException;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
+use App\Symfony\Form\CategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,29 +31,25 @@ class CategoryController extends RestController
     }
 
     /**
-     * @Route("/category/create", name="create_cateogry_form", methods={"GET"})
+     * @Route("/category/create", name="create_cateogry_form", methods={"GET", "POST"})
      */
     public function createCategoryForm(Request $request): Response
     {
-        return $this->render('category/create_category.html.twig');
-    }
+        $form = $this->createForm(CategoryType::class);
+        $form->handleRequest($request);
 
-    /**
-     * @Route("/category/create", name="create_cateogry_action", methods={"POST"})
-     */
-    public function createCategoryAction(Request $request): Response
-    {
-        try {
-            $data = $request->request->all();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
             $this->system->command(new CreateCategoryCommand($data['name']));
             $this->addFlash('info', 'Success create category');
 
             return $this->redirectToRoute('categories');
-        } catch (CategoryException $exception) {
-            $this->addFlash('error', $exception->getMessage());
-
-            return $this->render('category/create_category.html.twig');
         }
+
+        return $this->render('category/create_category.html.twig', [
+            'form' => $form->createView(),
+            'errors' => $form->getErrors(),
+        ]);
     }
 
     /**

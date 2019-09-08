@@ -1,18 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- Default form login -->
-    <form method="post" class="text-center border border-light p-5" action="">
+    {{ form_start(form) }}
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="category_name">{{ form_label(form.name) }}</label>
+            {%  if form_errors(form.name) is empty  %}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {% else %}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control is-invalid'}}) }}
+            {% endif %}
+            <div class="invalid-feedback">
+                {{ form_errors(form.name) }}
+            </div>
 
-        <p class="h4 mb-4">Create Category</p>
-
-        <!-- Name -->
-        <input type="text" id="name" name="name" class="form-control mb-4" placeholder="create">
-
-        <!-- Create button -->
-        <button class="btn btn-success btn-block my-4" type="submit">Create Category</button>
-
-    </form>
-    <a  href="{{ path('categories') }}" class="btn btn-info">Back to list</a>
-    <!-- Default form login -->
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    {{ form_end(form) }}
 {% endblock %}

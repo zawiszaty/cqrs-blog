@@ -11,6 +11,8 @@ interface CategoryRepositoryInterface
 {
     public function find(AggregateRootId $id): CategoryView;
 
+    public function findOneBy(array $data): ?CategoryView;
+
     public function apply(): void;
 
     public function store(CategoryView $category): void;
