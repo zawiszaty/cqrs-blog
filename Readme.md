@@ -19,5 +19,4 @@ make test
 - [x] Unit Test
 - [x] Integration Test
 - [x] Functional Test
-- [ ] React SSR Front
 - [ ] End to End Test
