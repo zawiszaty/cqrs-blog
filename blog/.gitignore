@@ -16,3 +16,4 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 /node_modules/
+.deptrac.cache
