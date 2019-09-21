@@ -59,4 +59,13 @@ class Post extends AggregateRoot
         $this->title = $event->getTitle();
         $this->tags = $event->getTags();
     }
+
+    public static function withData(array $data): self
+    {
+        $post = new self();
+        $post->id = $data['id'];
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $post->tags = $data['tags'];
+    }
 }

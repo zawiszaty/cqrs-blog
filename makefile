@@ -1,5 +1,5 @@
 .PHONY: start
-start: stop composer up db
+start: stop composer up db migration
 
 .PHONY: stop
 stop: ## stop environment
@@ -23,6 +23,11 @@ db: ## up db
 		docker-compose exec php bin/console d:s:c --env=test
 		docker-compose exec php bin/console d:f:l -n
 		docker-compose exec php bin/console d:f:l -n --env=test
+
+.PHONY: migration
+migration:
+		docker-compose exec php php bin/console d:m:m -n
+		docker-compose exec php php bin/console d:m:m -n --env=test
 
 .PHONY: php
 php: ## login to php container

@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategoryController extends RestController
+class CategoryController extends WebController
 {
     /**
      * @Route("/category/{page}/{limit}", name="categories", methods={"GET"}, defaults={"page": 1, "limit": 10}, requirements={"page"="\d+", "limit"="\d+"})

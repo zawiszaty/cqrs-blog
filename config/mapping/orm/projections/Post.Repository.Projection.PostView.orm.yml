@@ -1,0 +1,40 @@
+App\Blog\Infrastructure\Post\Repository\Projection\PostView:
+  type: entity
+  table: post
+  uniqueConstraints:
+    search_idx:
+      columns: [ title, slug ]
+  id:
+    id:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+      id: true
+  fields:
+    title:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    slug:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    tags:
+      type: text
+      nullable: false
+      length: 65535
+      options:
+        fixed: false
+    content:
+      type: text
+      nullable: false
+      length: 65535
+      options:
+        fixed: false
+lifecycleCallbacks: {  }

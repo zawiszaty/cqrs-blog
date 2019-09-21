@@ -7,7 +7,7 @@ namespace App\Symfony\Controller;
 use App\Blog\System;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class RestController extends AbstractController
+class WebController extends AbstractController
 {
     /**
      * @var System

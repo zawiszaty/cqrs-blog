@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends RestController
+class HomeController extends WebController
 {
     /**
      * @Route("/", name="home", methods={"GET"})
