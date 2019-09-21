@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Blog\Domain\Post\ValueObject\Tags;
-
 
 class Tags
 {
@@ -13,6 +13,7 @@ class Tags
 
     /**
      * Tags constructor.
+     *
      * @param Tag[] $tags
      */
     private function __construct(array $tags)
@@ -46,12 +47,14 @@ class Tags
 
     public function toString(): string
     {
-        $self =  new self($this->tags);
+        $tags = [];
+        $self = new self($this->tags);
 
         foreach ($self->tags as $index => $tag) {
-            $self->tags[$index] = $tag->toString();
+            $tags[] = $tag->toString();
         }
-        return json_encode($self->tags);
+
+        return (string) json_encode($tags);
     }
 
     public function __toString()

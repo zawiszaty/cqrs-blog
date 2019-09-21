@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Blog\Domain\Post\Event;
-
 
 use App\Blog\Domain\Post\ValueObject\Content;
 use App\Blog\Domain\Post\ValueObject\Tags\Tags;
@@ -33,10 +33,11 @@ class PostWasCreatedEvent extends Event
 
     /**
      * PostWasCreatedEvent constructor.
+     *
      * @param AggregateRootId $id
-     * @param Content $content
-     * @param Title $title
-     * @param Tags $tags
+     * @param Content         $content
+     * @param Title           $title
+     * @param Tags            $tags
      */
     public function __construct(AggregateRootId $id, Content $content, Title $title, Tags $tags)
     {

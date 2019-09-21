@@ -6,6 +6,7 @@ namespace App\Blog\Infrastructure\User\Repository\Store;
 
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
+use App\Blog\Domain\User\Exception\UserException;
 use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
 use App\Blog\Domain\User\ValueObject\Roles;
@@ -13,7 +14,6 @@ use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 use App\Blog\Infrastructure\User\Repository\Projection\UserRepositoryInterface;
 use App\Blog\Infrastructure\User\Repository\Projection\UserView;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserStoreRepository extends StoreRepository implements UserStoreRepositoryInterface
 {
@@ -40,7 +40,7 @@ class UserStoreRepository extends StoreRepository implements UserStoreRepository
         $userView = $this->userRepository->find($id->toString());
 
         if (!$userView) {
-            throw new NotFoundHttpException();
+            throw UserException::fromMissingUser($id->toString());
         }
         $user = User::withData([
             'id' => AggregateRootId::withId(RamseyUuidAdapter::fromString($userView->getId())),

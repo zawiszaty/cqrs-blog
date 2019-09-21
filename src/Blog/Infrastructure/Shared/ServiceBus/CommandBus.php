@@ -43,6 +43,7 @@ class CommandBus
         $commandHandler[count($commandHandler) - 1] = str_replace('Command', 'Handler', $commandHandler[count($commandHandler) - 1]);
         $commandHandler = implode('\\', $commandHandler);
         $handler = $this->handlers[$commandHandler];
+
         if (!$handler instanceof CommandHandlerInterface) {
             throw new HandlerNotFoundException('Handler not found from: '.$command);
         }

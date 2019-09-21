@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Category\Exception;
 
-class CategoryException extends \RuntimeException
+class CategoryException extends \DomainException
 {
     public static function categoryNameExist(string $name): self
     {

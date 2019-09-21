@@ -6,9 +6,9 @@ namespace App\Blog\Domain\User\Service;
 
 class PasswordEncoder
 {
-    public function encode(string $plainPassword)
+    public function encode(string $plainPassword): string
     {
-        return password_hash($plainPassword, PASSWORD_BCRYPT);
+        return (string) password_hash($plainPassword, PASSWORD_BCRYPT);
     }
 
     public function verify(string $password, string $hash): bool

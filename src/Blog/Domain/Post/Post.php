@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Blog\Domain\Post;
-
 
 use App\Blog\Domain\Post\Event\PostWasCreatedEvent;
 use App\Blog\Domain\Post\ValueObject\Content;
@@ -30,7 +30,6 @@ class Post extends AggregateRoot
      */
     private $tags;
 
-
     public static function create(string $title, string $content, array $tags): self
     {
         $self = new self();
@@ -39,7 +38,8 @@ class Post extends AggregateRoot
                 AggregateRootId::withId(RamseyUuidAdapter::generate()),
                 Content::withContent($content),
                 Title::withTitle($title),
-                Tags::withTags($tags))
+                Tags::withTags($tags)
+            )
         );
 
         return $self;

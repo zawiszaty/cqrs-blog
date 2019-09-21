@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\User\ValueObject;
 
-use App\Blog\Domain\User\Exception\RoleNotFoundException;
+use App\Blog\Domain\User\Exception\UserException;
 use App\Blog\Domain\User\Role;
 
 class Roles
@@ -26,7 +26,7 @@ class Roles
                 case Role::User == $role:
                     break;
                 default:
-                    throw new RoleNotFoundException();
+                    throw UserException::fromMissingRole($role);
                     break;
             }
         }

@@ -6,6 +6,7 @@ namespace App\Blog\Infrastructure\Category\Repository\Store;
 
 use App\Blog\Domain\Category\Category;
 use App\Blog\Domain\Category\CategoryStoreRepositoryInterface;
+use App\Blog\Domain\Category\Exception\CategoryException;
 use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
@@ -13,7 +14,6 @@ use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryStoreRepository extends StoreRepository implements CategoryStoreRepositoryInterface
 {
@@ -42,7 +42,7 @@ class CategoryStoreRepository extends StoreRepository implements CategoryStoreRe
         $categoryView = $this->categoryRepository->find($id);
 
         if (!$categoryView) {
-            throw new NotFoundHttpException();
+            throw CategoryException::categoryDoesntExist($id->toString());
         }
         $category = Category::withData([
             'id' => AggregateRootId::withId(RamseyUuidAdapter::fromString($categoryView->id)),

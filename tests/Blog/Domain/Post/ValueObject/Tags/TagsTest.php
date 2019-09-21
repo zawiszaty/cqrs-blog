@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Blog\Domain\Post\ValueObject\Tags;
 
 use App\Blog\Domain\Post\ValueObject\Tags\Tag;
@@ -8,13 +10,13 @@ use PHPUnit\Framework\TestCase;
 
 class TagsTest extends TestCase
 {
-    function test_it_create_tags()
+    public function test_it_create_tags()
     {
         $tags = Tags::withTags(['test', Tag::withContent('test2')]);
         $this->assertSame(2, count($tags->getTags()));
     }
 
-    function test_it_convert_to_json()
+    public function test_it_convert_to_json()
     {
         $tags = Tags::withTags(['test', Tag::withContent('test2')]);
         $this->assertIsString($tags->toString());

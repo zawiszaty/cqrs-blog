@@ -26,7 +26,7 @@ db: ## up db
 
 .PHONY: php
 php: ## login to php container
-		docker-compose exec php /bin/bash
+		docker-compose exec php /bin/sh
 
 .PHONY: require
 require: ## require to composer
@@ -47,7 +47,7 @@ layer: ## layer
 
 .PHONY: phpunit
 phpunit: ## test
-		docker-compose exec php ./bin/phpunit
+		docker-compose exec php ./bin/phpunit $(m)
 
 .PHONY: test
 test: cs layer style phpunit
