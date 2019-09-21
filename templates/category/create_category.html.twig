@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="category_name">{{ form_label(form.name) }}</label>
+            {%  if form_errors(form.name) is empty  %}
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            {% else %}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control is-invalid'}}) }}
+            {% endif %}
+            <div class="invalid-feedback">
+                {{ form_errors(form.name) }}
+            </div>
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}
