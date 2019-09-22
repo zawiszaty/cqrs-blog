@@ -5,12 +5,9 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && docker-php-ext-enable xdebug
 
 RUN docker-php-ext-install pdo_mysql
-
 RUN apk update && \
-    apk add git zip
-
-RUN curl --silent --show-error https://getcomposer.org/installer | php
-RUN apk add \
+		apk add \
+		git \
         libzip-dev \
         unzip \
         zip \

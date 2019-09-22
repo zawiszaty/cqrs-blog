@@ -1,9 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace App\Blog\Infrastructure\Shared\Collection;
-
 
 final class DataCollection
 {
@@ -15,7 +14,7 @@ final class DataCollection
 
     public function __construct(array $data, int $count)
     {
-        $this->data  = $data;
+        $this->data = $data;
         $this->count = $count;
     }
 
