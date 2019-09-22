@@ -16,12 +16,12 @@ class UserTest extends TestCase
 {
     public function testItCreateUser()
     {
-        $user = User::create(UserName::withUserName('test'), Roles::withRoles([Role::User]), Password::withPassword(password_hash('test', PASSWORD_DEFAULT)));
+        $user = User::create(UserName::withUserName('test'), Roles::withRoles([Role::ROLE_USER()]), Password::withPassword(password_hash('test', PASSWORD_DEFAULT)));
         /** @var UserWasCreatedEvent $event */
         $event = $user->getUnCommitedEvent()[0];
         $this->assertInstanceOf(UserWasCreatedEvent::class, $event);
         $this->assertSame($event->getUsername()->toString(), 'test');
-        $this->assertSame($event->getRoles()->getRoles(), [Role::User]);
+        $this->assertSame($event->getRoles()->getRoles(), [Role::ROLE_USER()->getValue()]);
         $this->assertTrue(password_verify('test', $event->getPassword()->toString()));
     }
 }

@@ -10,7 +10,7 @@ use App\Blog\Domain\User\Role;
 class Roles
 {
     /**
-     * @var array
+     * @var Role[]
      */
     private $roles;
 
@@ -22,12 +22,8 @@ class Roles
     public static function withRoles(array $roles): Roles
     {
         foreach ($roles as $role) {
-            switch ($role) {
-                case Role::User == $role:
-                    break;
-                default:
-                    throw UserException::fromMissingRole($role);
-                    break;
+            if (false === ($role instanceof Role)) {
+                throw UserException::fromMissingRole($role);
             }
         }
 
@@ -39,6 +35,11 @@ class Roles
      */
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = [];
+        foreach ($this->roles as $role) {
+            $roles[] = $role->getValue();
+        }
+
+        return $roles;
     }
 }

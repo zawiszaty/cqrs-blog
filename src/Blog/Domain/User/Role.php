@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\User;
 
-class Role
+use MyCLabs\Enum\Enum;
+
+/**
+ * @method static Role ROLE_USER()
+ */
+class Role extends Enum
 {
-    public const User = 'ROLE_USER';
+    private const ROLE_USER = 'ROLE_USER';
 }

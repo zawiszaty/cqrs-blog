@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Blog\Infrastructure\Shared\Sluger;
+namespace Tests\Blog\Infrastructure\Shared\Slugger;
 
-use App\Blog\Infrastructure\Shared\Sluger\Slugger;
+use App\Blog\Infrastructure\Shared\Slugger\Slugger;
 use PHPUnit\Framework\TestCase;
 
 class SluggerTest extends TestCase

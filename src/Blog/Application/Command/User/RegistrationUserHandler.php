@@ -36,7 +36,7 @@ class RegistrationUserHandler implements CommandHandlerInterface
         $password = $this->passwordEncoder->encode($command->getPassword());
         $user = User::create(
             UserName::withUserName($command->getUsername()),
-            Roles::withRoles([Role::User]),
+            Roles::withRoles([Role::ROLE_USER()]),
             Password::withPassword($password)
         );
         $this->userRepository->store($user);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\Category\Repository\Projection;
 
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
+use App\Blog\Infrastructure\Shared\Collection\DataCollection;
 use App\Blog\Infrastructure\Shared\ProjectionRepository\MysqlRepository;
 
 class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
@@ -15,7 +16,7 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
         parent::__construct($entityManager);
     }
 
-    public function getAll(int $page, int $limit): array
+    public function getAll(int $page, int $limit): DataCollection
     {
         $qb = $this
             ->repository
@@ -29,11 +30,8 @@ class CategoryFinder extends MysqlRepository implements CategoryFinderInterface
             ->createQueryBuilder('category')
             ->select('count(category.id)');
         $count = $qbCount->getQuery()->setCacheable(true)
-            ->execute();
-        $data = [
-            'data' => $model,
-            'total' => $count[0][1],
-        ];
+            ->getSingleScalarResult();
+        $data = new DataCollection($model, (int) $count);
 
         return $data;
     }

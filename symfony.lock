@@ -123,6 +123,9 @@
     "jetbrains/phpstorm-stubs": {
         "version": "v2019.1"
     },
+    "myclabs/php-enum": {
+        "version": "1.7.2"
+    },
     "nette/bootstrap": {
         "version": "v3.0.0"
     },
@@ -505,6 +508,9 @@
     },
     "symplify/package-builder": {
         "version": "v6.0.2"
+    },
+    "timeweb/phpstan-enum": {
+        "version": "v2.2.0"
     },
     "twig/twig": {
         "version": "v2.11.2"

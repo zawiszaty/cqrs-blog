@@ -1,3 +1,5 @@
 parameters:
 	autoload_files:
 		- vendor/autoload.php
+	includes:
+		- vendor/timeweb/phpstan-enum/extension.neon

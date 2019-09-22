@@ -6,7 +6,7 @@ namespace App\Blog\Infrastructure\Post\Repository\Projection;
 
 use App\Blog\Domain\Post\Event\PostWasCreatedEvent;
 use App\Blog\Infrastructure\Post\Repository\PostRepositoryInterface;
-use App\Blog\Infrastructure\Shared\Sluger\Slugger;
+use App\Blog\Infrastructure\Shared\Slugger\Slugger;
 
 final class MysqlPostProjection
 {

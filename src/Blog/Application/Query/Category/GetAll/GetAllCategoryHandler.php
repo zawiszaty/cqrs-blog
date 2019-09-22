@@ -27,8 +27,8 @@ class GetAllCategoryHandler implements QueryHandlerInterface
         return new Collection(
             $allCategoryQuery->getPage(),
             $allCategoryQuery->getLimit(),
-            (int) $data['total'],
-            $data['data']
+            $data->getCount(),
+            $data->getData()
         );
     }
 }

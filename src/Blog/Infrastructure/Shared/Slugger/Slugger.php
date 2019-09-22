@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Shared\Sluger;
+namespace App\Blog\Infrastructure\Shared\Slugger;
 
 final class Slugger
 {

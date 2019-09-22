@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "beberlei/assert": "^3.2",
+        "myclabs/php-enum": "^1.7",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.8",
         "sensio/framework-extra-bundle": "^5.4",
@@ -78,6 +79,7 @@
         "symfony/css-selector": "4.3.*",
         "symfony/maker-bundle": "^1.11",
         "symfony/phpunit-bridge": "^4.3",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/profiler-pack": "^1.0",
+        "timeweb/phpstan-enum": "^2.2"
     }
 }

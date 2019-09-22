@@ -20,7 +20,7 @@ final class CreatePostHandler implements CommandHandlerInterface
         $this->postStoreRepository = $postStoreRepository;
     }
 
-    public function __invoke(CreatePostCommand $createPostCommand)
+    public function __invoke(CreatePostCommand $createPostCommand): void
     {
         $post = Post::create(
             $createPostCommand->getTitle(),

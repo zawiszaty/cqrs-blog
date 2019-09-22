@@ -16,11 +16,6 @@ class RegistrationUserCommand
      */
     private $password;
 
-    /**
-     * RegistrationUserCommand constructor.
-     *
-     * @param string $username
-     */
     public function __construct(string $username, string $password)
     {
         $this->username = $username;
