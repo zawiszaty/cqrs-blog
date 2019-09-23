@@ -13,5 +13,3 @@ RUN apk update && \
         zip \
   && docker-php-ext-configure zip --with-libzip \
   && docker-php-ext-install zip
-
-src/Blog/Infrastructure/Shared/Collection/DataCollection.php
