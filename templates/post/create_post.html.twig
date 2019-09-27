@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<div class="form-row">
+		<div class="col-md-4 mb-3">
+			<label for="category_title">{{ form_label(form.title) }}</label>
+			{% if form_errors(form.title) is empty %}
+				{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+			{% else %}
+				{{ form_widget(form.title, {'attr': {'class': 'form-control is-invalid'}}) }}
+			{% endif %}
+			<div class="invalid-feedback">
+				{{ form_errors(form.title) }}
+			</div>
+
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="col-md-4 mb-3">
+			<label for="category_content">{{ form_label(form.content) }}</label>
+			{% if form_errors(form.content) is empty %}
+				{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+			{% else %}
+				{{ form_widget(form.content, {'attr': {'class': 'form-control is-invalid'}}) }}
+			{% endif %}
+			<div class="invalid-feedback">
+				{{ form_errors(form.content) }}
+			</div>
+
+		</div>
+	</div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="category_tags">{{ form_label(form.tags) }}</label>
+            {% if form_errors(form.tags) is empty %}
+                {{ form_widget(form.tags, {'attr': {'class': 'form-control'}}) }}
+            {% else %}
+                {{ form_widget(form.tags, {'attr': {'class': 'form-control is-invalid'}}) }}
+            {% endif %}
+            <div class="invalid-feedback">
+                {{ form_errors(form.tags) }}
+            </div>
+
+        </div>
+    </div>
+
+	<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+	{{ form_end(form) }}
+{% endblock %}

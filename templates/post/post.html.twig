@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<a href="{{ path('post_cateogry_form') }}" class="btn btn-success">Create Post</a>
+	<table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<thead>
+		<tr>
+			<th class="th-sm">Title
+			</th>
+			<th class="th-sm">Content
+			</th>
+			<th class="th-sm">Tags
+			</th>
+			<th class="th-sm">
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for post in posts.data %}
+			<tr>
+				<td>{{ post.title }}</td>
+				<td>{{ post.content }}</td>
+				<td>{{ post.tags }}</td>
+				<td>
+					<form method="post" action=""
+					      onsubmit="return confirm('Are you sure you want to delete this item?');">
+						<button type="submit" class="btn btn-danger btn-block"><i class="fas fa-trash"></i></button>
+					</form>
+					<a href="{{ path('edit_category_form', {"id": post.id}) }}" class="btn btn-info btn-block"><i
+								class="far fa-edit"></i></a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
