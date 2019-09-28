@@ -1,5 +1,8 @@
 .PHONY: start
-start: stop composer up db
+start: stop composer up db workers
+
+.PHONY: ci
+ci: stop composer up db
 
 .PHONY: stop
 stop: ## stop environment
@@ -12,6 +15,10 @@ composer: ## spin up environment
 .PHONY: up
 up: ## up docker
 		docker-compose up -d
+
+.PHONY: workers
+workers: ## workers
+		docker-compose exec php bin/console app:create-projection
 
 .PHONY: db
 db: ## up db

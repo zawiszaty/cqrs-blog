@@ -24,24 +24,5 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
-  rabbit:
-    image: "rabbitmq:3.8-rc-management-alpine"
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_DEFAULT_VHOST: "/"
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-
-  worker_1:
-    build: docker/dev/php
-    volumes:
-      - ./:/var/www/project:delegated
-    links:
-      - db
-
-
 volumes:
   db_data:
