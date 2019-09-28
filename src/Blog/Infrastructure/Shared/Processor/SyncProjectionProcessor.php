@@ -7,7 +7,7 @@ namespace App\Blog\Infrastructure\Shared\Processor;
 use App\Blog\Domain\Shared\Infrastructure\Event;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ProjectionProcessor
+class SyncProjectionProcessor implements ProjectionProcessorInterface
 {
     /**
      * @var ProcessorConfig

@@ -4,7 +4,6 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && pecl install xdebug-2.7.2 \
     && docker-php-ext-enable xdebug
 
-RUN docker-php-ext-install pdo_mysql
 RUN apk update && \
 		apk add \
 		git \
@@ -12,4 +11,6 @@ RUN apk update && \
         unzip \
         zip \
   && docker-php-ext-configure zip --with-libzip \
-  && docker-php-ext-install zip
+  && docker-php-ext-install zip \
+  && docker-php-ext-install pdo_mysql \
+  && docker-php-ext-install bcmath sockets pcntl

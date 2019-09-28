@@ -1,0 +1,2 @@
+services:
+    App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface: '@App\Blog\Infrastructure\Shared\Processor\SyncProjectionProcessor'

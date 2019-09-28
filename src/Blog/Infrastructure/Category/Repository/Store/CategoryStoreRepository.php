@@ -12,7 +12,7 @@ use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
+use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 
 class CategoryStoreRepository extends StoreRepository implements CategoryStoreRepositoryInterface
@@ -22,7 +22,7 @@ class CategoryStoreRepository extends StoreRepository implements CategoryStoreRe
      */
     private $categoryRepository;
 
-    public function __construct(ProjectionProcessor $projectionProcessor, CategoryRepositoryInterface $categoryRepository)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor, CategoryRepositoryInterface $categoryRepository)
     {
         parent::__construct($projectionProcessor);
         $this->categoryRepository = $categoryRepository;

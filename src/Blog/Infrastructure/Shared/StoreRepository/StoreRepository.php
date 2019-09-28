@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Shared\StoreRepository;
 
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
+use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 
 /**
  * Class MysqlRepository.
@@ -16,7 +16,7 @@ abstract class StoreRepository
      */
     protected $events = [];
     /**
-     * @var ProjectionProcessor
+     * @var ProjectionProcessorInterface
      */
     private $projectionProcessor;
 
@@ -30,7 +30,7 @@ abstract class StoreRepository
     /**
      * MysqlRepository constructor.
      */
-    public function __construct(ProjectionProcessor $projectionProcessor)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor)
     {
         $this->projectionProcessor = $projectionProcessor;
     }

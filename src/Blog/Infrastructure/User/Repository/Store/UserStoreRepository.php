@@ -10,7 +10,7 @@ use App\Blog\Domain\User\Exception\UserException;
 use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
 use App\Blog\Domain\User\ValueObject\Roles;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
+use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 use App\Blog\Infrastructure\User\Repository\Projection\UserRepositoryInterface;
 use App\Blog\Infrastructure\User\Repository\Projection\UserView;
@@ -18,7 +18,7 @@ use App\Blog\Infrastructure\User\Repository\Projection\UserView;
 class UserStoreRepository extends StoreRepository implements UserStoreRepositoryInterface
 {
     /**
-     * @var ProjectionProcessor
+     * @var ProjectionProcessorInterface
      */
     private $projectionProcessor;
     /**
@@ -27,7 +27,7 @@ class UserStoreRepository extends StoreRepository implements UserStoreRepository
     private $userRepository;
 
     public function __construct(
-        ProjectionProcessor $projectionProcessor,
+        ProjectionProcessorInterface $projectionProcessor,
         UserRepositoryInterface $userRepository
     ) {
         parent::__construct($projectionProcessor);

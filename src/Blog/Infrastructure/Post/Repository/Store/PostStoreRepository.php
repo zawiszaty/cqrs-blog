@@ -14,7 +14,7 @@ use App\Blog\Domain\Shared\Infrastructure\Uuid\RamseyUuidAdapter;
 use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Infrastructure\Post\Repository\PostRepositoryInterface;
 use App\Blog\Infrastructure\Post\Repository\Projection\PostView;
-use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessor;
+use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 
 final class PostStoreRepository extends StoreRepository implements PostStoreRepositoryInterface
@@ -24,7 +24,7 @@ final class PostStoreRepository extends StoreRepository implements PostStoreRepo
      */
     private $postRepository;
 
-    public function __construct(ProjectionProcessor $projectionProcessor, PostRepositoryInterface $postRepository)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor, PostRepositoryInterface $postRepository)
     {
         parent::__construct($projectionProcessor);
         $this->postRepository = $postRepository;
