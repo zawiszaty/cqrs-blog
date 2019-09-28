@@ -1,20 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace App\Symfony\Controller;
-
 
 use App\Blog\Application\Command\Post\Create\CreatePostCommand;
 use App\Blog\Application\Query\Post\GetAll\GetAllPostQuery;
 use App\Symfony\Form\PostType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class PostController extends WebController
 {
-
     /**
      * @Route("/posts/{page}/{limit}", name="posts", methods={"GET"}, defaults={"page": 1, "limit": 10}, requirements={"page"="\d+", "limit"="\d+"})
      */
@@ -35,8 +33,7 @@ final class PostController extends WebController
         $form = $this->createForm(PostType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $this->system->command(new CreatePostCommand(
                 $data['title'],
@@ -49,7 +46,7 @@ final class PostController extends WebController
         }
 
         return $this->render('post/create_post.html.twig', [
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
             'errors' => $form->getErrors(),
         ]);
     }

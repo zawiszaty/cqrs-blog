@@ -1,9 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
-
 namespace App\Blog\Infrastructure\Post\Repository\Projection;
-
 
 use App\Blog\Domain\Shared\Infrastructure\ORM\ORMAdapterInterface;
 use App\Blog\Infrastructure\Shared\Collection\DataCollection;
@@ -19,20 +18,20 @@ final class PostFinder extends MysqlRepository implements PostFinderInterface
 
     public function getAll(int $page, int $limit): DataCollection
     {
-        $qb      = $this
+        $qb = $this
             ->repository
             ->createQueryBuilder('post')
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);
-        $model   = $qb->getQuery()->setCacheable(true)
+        $model = $qb->getQuery()->setCacheable(true)
             ->getArrayResult();
         $qbCount = $this
             ->repository
             ->createQueryBuilder('post')
             ->select('count(post.id)');
-        $count   = $qbCount->getQuery()->setCacheable(true)
+        $count = $qbCount->getQuery()->setCacheable(true)
             ->getSingleScalarResult();
-        $data    = new DataCollection($model, (int) $count);
+        $data = new DataCollection($model, (int) $count);
 
         return $data;
     }

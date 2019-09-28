@@ -9,8 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
@@ -37,26 +35,25 @@ class PostType extends AbstractType
                         'callback' => [$this, 'checkTitle'],
                     ]),
                 ],
-                'required'    => true,
+                'required' => true,
             ])
             ->add('content', TextareaType::class, [
                 'constraints' => [
                     new NotNull(),
                 ],
-                'required'    => true,
+                'required' => true,
             ])
             ->add('tags', TextType::class, [
                 'constraints' => [
                     new NotNull(),
                 ],
-                'required'    => true,
+                'required' => true,
             ]);
     }
 
     public function checkTitle(string $title, ExecutionContextInterface $context): void
     {
-        if ($this->postRepository->findOneBy(['title' => $title]))
-        {
+        if ($this->postRepository->findOneBy(['title' => $title])) {
             $context->addViolation('Title Exist.');
         }
     }

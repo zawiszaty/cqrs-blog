@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Post;
 
+use App\Blog\Domain\Post\Event\CommentWasAdded;
 use App\Blog\Domain\Post\Event\PostWasCreatedEvent;
+use App\Blog\Domain\Post\ValueObject\CommentId;
+use App\Blog\Domain\Post\ValueObject\CommentUser;
 use App\Blog\Domain\Post\ValueObject\Content;
 use App\Blog\Domain\Post\ValueObject\Tags\Tags;
 use App\Blog\Domain\Post\ValueObject\Title;
@@ -67,5 +70,7 @@ class Post extends AggregateRoot
         $post->title = $data['title'];
         $post->content = $data['content'];
         $post->tags = $data['tags'];
+
+        return $post;
     }
 }
