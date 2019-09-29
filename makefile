@@ -18,8 +18,8 @@ up: ## up docker
 
 .PHONY: workers
 workers: ## workers
-		docker-compose exec php bin/console app:create-projection &
-		docker-compose exec php bin/console app:confirm-user-email &
+		docker-compose exec -d php bin/console app:confirm-user-email
+		docker-compose exec -d php bin/console app:create-projection
 
 .PHONY: db
 db: ## up db
