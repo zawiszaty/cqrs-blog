@@ -24,6 +24,5 @@ class AsyncProjectionProcessor implements ProjectionProcessorInterface
     {
         $msg = new AMQPMessage(serialize($event));
         $this->client->publish($msg, '', 'projection');
-        $this->client->publish($msg, '', get_class($event));
     }
 }

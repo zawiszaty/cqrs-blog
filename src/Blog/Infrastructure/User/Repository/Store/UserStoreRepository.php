@@ -11,6 +11,7 @@ use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
 use App\Blog\Domain\User\ValueObject\Roles;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
+use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 use App\Blog\Infrastructure\User\Repository\Projection\UserRepositoryInterface;
 use App\Blog\Infrastructure\User\Repository\Projection\UserView;
@@ -28,9 +29,10 @@ class UserStoreRepository extends StoreRepository implements UserStoreRepository
 
     public function __construct(
         ProjectionProcessorInterface $projectionProcessor,
-        UserRepositoryInterface $userRepository
+        UserRepositoryInterface $userRepository,
+        RabbitmqClient $client
     ) {
-        parent::__construct($projectionProcessor);
+        parent::__construct($projectionProcessor, $client);
         $this->userRepository = $userRepository;
     }
 

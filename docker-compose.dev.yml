@@ -35,13 +35,11 @@ services:
       - "15672:15672"
       - "5672:5672"
 
-  worker_1:
-    build: docker/dev/php
-    volumes:
-      - ./:/var/www/project:delegated
-    links:
-      - db
-
+  mailcatcher:
+    image: yappabe/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
 
 volumes:
   db_data:
