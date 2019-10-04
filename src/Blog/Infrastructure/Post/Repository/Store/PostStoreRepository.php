@@ -16,6 +16,7 @@ use App\Blog\Infrastructure\Post\Repository\PostRepositoryInterface;
 use App\Blog\Infrastructure\Post\Repository\Projection\PostView;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
+use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 
 final class PostStoreRepository extends StoreRepository implements PostStoreRepositoryInterface
@@ -25,7 +26,7 @@ final class PostStoreRepository extends StoreRepository implements PostStoreRepo
      */
     private $postRepository;
 
-    public function __construct(ProjectionProcessorInterface $projectionProcessor, PostRepositoryInterface $postRepository, RabbitmqClient $client)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor, PostRepositoryInterface $postRepository, RabbitmqClientInterface $client)
     {
         parent::__construct($projectionProcessor, $client);
         $this->postRepository = $postRepository;

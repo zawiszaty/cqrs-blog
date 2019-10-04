@@ -14,6 +14,7 @@ use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
+use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 
 class CategoryStoreRepository extends StoreRepository implements CategoryStoreRepositoryInterface
@@ -23,7 +24,7 @@ class CategoryStoreRepository extends StoreRepository implements CategoryStoreRe
      */
     private $categoryRepository;
 
-    public function __construct(ProjectionProcessorInterface $projectionProcessor, CategoryRepositoryInterface $categoryRepository, RabbitmqClient $client)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor, CategoryRepositoryInterface $categoryRepository, RabbitmqClientInterface $client)
     {
         parent::__construct($projectionProcessor, $client);
         $this->categoryRepository = $categoryRepository;

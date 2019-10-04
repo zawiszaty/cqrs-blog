@@ -1,3 +1,4 @@
 services:
     App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface: '@App\Blog\Infrastructure\Shared\Processor\SyncProjectionProcessor'
 #    App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface: '@App\Blog\Infrastructure\Shared\Processor\AsyncProjectionProcessor'
+    App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface: 'App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient'

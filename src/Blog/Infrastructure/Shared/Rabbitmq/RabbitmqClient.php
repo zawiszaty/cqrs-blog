@@ -7,7 +7,7 @@ namespace App\Blog\Infrastructure\Shared\Rabbitmq;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-final class RabbitmqClient
+final class RabbitmqClient implements RabbitmqClientInterface
 {
     /**
      * @var AMQPStreamConnection

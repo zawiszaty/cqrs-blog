@@ -6,6 +6,7 @@ namespace App\Blog\Infrastructure\Shared\StoreRepository;
 
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
+use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 
 /**
@@ -37,7 +38,7 @@ abstract class StoreRepository
     /**
      * MysqlRepository constructor.
      */
-    public function __construct(ProjectionProcessorInterface $projectionProcessor, RabbitmqClient $client)
+    public function __construct(ProjectionProcessorInterface $projectionProcessor, RabbitmqClientInterface $client)
     {
         $this->projectionProcessor = $projectionProcessor;
         $this->client              = $client;
