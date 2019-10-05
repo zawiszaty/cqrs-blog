@@ -13,7 +13,6 @@ use App\Blog\Domain\Shared\Infrastructure\ValueObject\Name;
 use App\Blog\Infrastructure\Category\Repository\CategoryRepositoryInterface;
 use App\Blog\Infrastructure\Category\Repository\Projection\CategoryView;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
-use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 

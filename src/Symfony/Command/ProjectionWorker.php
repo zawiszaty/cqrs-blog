@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace App\Symfony\Command;
 
@@ -28,10 +28,9 @@ final class ProjectionWorker extends Command
         RabbitmqClient $client,
         SyncProjectionProcessor $projectionProcessor,
         LoggerInterface $logger
-    )
-    {
+    ) {
         parent::__construct();
-        $this->client              = $client;
+        $this->client = $client;
         $this->projectionProcessor = $projectionProcessor;
         $this->logger = $logger;
     }
@@ -44,16 +43,15 @@ final class ProjectionWorker extends Command
         $this->client->consume('projection', function (AMQPMessage $msg) {
             $event = unserialize($msg->getBody());
 
-            if (false === ($event instanceof Event))
-            {
+            if (false === ($event instanceof Event)) {
                 $this->logger->error(sprintf('Is not a Event %s', $msg->getBody()));
+
                 return;
             }
             $this->projectionProcessor->process($event);
         });
 
-        while ($this->client->is_consuming())
-        {
+        while ($this->client->is_consuming()) {
             $this->client->wait();
         }
     }

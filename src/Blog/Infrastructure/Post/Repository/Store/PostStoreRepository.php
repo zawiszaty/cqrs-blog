@@ -15,7 +15,6 @@ use App\Blog\Domain\Shared\Infrastructure\ValueObject\AggregateRootId;
 use App\Blog\Infrastructure\Post\Repository\PostRepositoryInterface;
 use App\Blog\Infrastructure\Post\Repository\Projection\PostView;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
-use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 

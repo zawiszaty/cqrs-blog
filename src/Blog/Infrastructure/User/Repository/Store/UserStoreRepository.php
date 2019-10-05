@@ -11,7 +11,6 @@ use App\Blog\Domain\User\User;
 use App\Blog\Domain\User\UserStoreRepositoryInterface;
 use App\Blog\Domain\User\ValueObject\Roles;
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
-use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 use App\Blog\Infrastructure\User\Repository\Projection\UserRepositoryInterface;

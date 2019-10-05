@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\Shared\StoreRepository;
 
 use App\Blog\Infrastructure\Shared\Processor\ProjectionProcessorInterface;
-use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClient;
 use App\Blog\Infrastructure\Shared\Rabbitmq\RabbitmqClientInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -14,17 +13,10 @@ use PhpAmqpLib\Message\AMQPMessage;
  */
 abstract class StoreRepository
 {
-    /**
-     * @var array
-     */
     protected $events = [];
-    /**
-     * @var ProjectionProcessorInterface
-     */
+
     private $projectionProcessor;
-    /**
-     * @var RabbitmqClient
-     */
+
     private $client;
 
     public function apply(): void
@@ -41,7 +33,7 @@ abstract class StoreRepository
     public function __construct(ProjectionProcessorInterface $projectionProcessor, RabbitmqClientInterface $client)
     {
         $this->projectionProcessor = $projectionProcessor;
-        $this->client              = $client;
+        $this->client = $client;
     }
 
     /**

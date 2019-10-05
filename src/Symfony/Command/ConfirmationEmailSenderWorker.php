@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace App\Symfony\Command;
 
@@ -28,8 +28,7 @@ final class ConfirmationEmailSenderWorker extends Command
         RabbitmqClient $client,
         LoggerInterface $logger,
         \Swift_Mailer $mailer
-    )
-    {
+    ) {
         parent::__construct();
         $this->client = $client;
         $this->logger = $logger;
@@ -44,8 +43,7 @@ final class ConfirmationEmailSenderWorker extends Command
         $this->client->consume(UserWasCreatedEvent::class, function (AMQPMessage $msg) {
             $event = unserialize($msg->getBody());
 
-            if (false === ($event instanceof Event))
-            {
+            if (false === ($event instanceof Event)) {
                 $this->logger->error(sprintf('Is not a Event %s', $msg->getBody()));
 
                 return;
@@ -58,8 +56,7 @@ final class ConfirmationEmailSenderWorker extends Command
             $this->logger->info('Email sended');
         });
 
-        while ($this->client->is_consuming())
-        {
+        while ($this->client->is_consuming()) {
             $this->client->wait();
         }
     }
