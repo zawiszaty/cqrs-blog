@@ -44,9 +44,6 @@ class Category extends AggregateRoot
         $this->record(new CategoryWasDeletedEvent($this->id));
     }
 
-    /**
-     * @return Name
-     */
     public function getName(): Name
     {
         return $this->name;

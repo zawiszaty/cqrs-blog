@@ -10,9 +10,6 @@ use App\Blog\Infrastructure\Post\Repository\Projection\PostFinderInterface;
 
 class GetAllPostHandler implements QueryHandlerInterface
 {
-    /**
-     * @var PostFinderInterface
-     */
     private $postFinder;
 
     public function __construct(PostFinderInterface $postFinder)

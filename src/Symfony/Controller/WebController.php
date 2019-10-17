@@ -9,9 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WebController extends AbstractController
 {
-    /**
-     * @var System
-     */
     protected $system;
 
     public function __construct(System $system)

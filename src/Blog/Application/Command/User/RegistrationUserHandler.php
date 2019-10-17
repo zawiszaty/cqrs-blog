@@ -15,13 +15,8 @@ use App\Blog\Domain\User\ValueObject\UserName;
 
 class RegistrationUserHandler implements CommandHandlerInterface
 {
-    /**
-     * @var UserStoreRepositoryInterface
-     */
     private $userRepository;
-    /**
-     * @var PasswordEncoder
-     */
+
     private $passwordEncoder;
 
     public function __construct(UserStoreRepositoryInterface $userRepository, PasswordEncoder $passwordEncoder)

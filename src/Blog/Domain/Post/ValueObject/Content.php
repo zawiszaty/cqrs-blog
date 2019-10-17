@@ -6,9 +6,6 @@ namespace App\Blog\Domain\Post\ValueObject;
 
 class Content
 {
-    /**
-     * @var string
-     */
     private $content;
 
     private function __construct(string $content)

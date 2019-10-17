@@ -14,13 +14,8 @@ use App\Blog\Infrastructure\Category\Repository\Projection\CategoryFinderInterfa
 
 class EditCategoryHandler implements CommandHandlerInterface
 {
-    /**
-     * @var CategoryStoreRepositoryInterface
-     */
     private $categoryRepository;
-    /**
-     * @var CategoryFinderInterface
-     */
+
     private $categoryFinder;
 
     public function __construct(

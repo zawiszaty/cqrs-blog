@@ -10,9 +10,6 @@ use App\Blog\Domain\Post\PostStoreRepositoryInterface;
 
 final class CreatePostHandler implements CommandHandlerInterface
 {
-    /**
-     * @var PostStoreRepositoryInterface
-     */
     private $postStoreRepository;
 
     public function __construct(PostStoreRepositoryInterface $postStoreRepository)

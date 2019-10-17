@@ -11,11 +11,6 @@ class Tags
      */
     private $tags;
 
-    /**
-     * Tags constructor.
-     *
-     * @param Tag[] $tags
-     */
     private function __construct(array $tags)
     {
         $this->tags = $tags;

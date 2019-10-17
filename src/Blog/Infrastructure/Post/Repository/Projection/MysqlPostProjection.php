@@ -10,13 +10,8 @@ use App\Blog\Infrastructure\Shared\Slugger\Slugger;
 
 final class MysqlPostProjection
 {
-    /**
-     * @var PostRepositoryInterface
-     */
     private $postRepository;
-    /**
-     * @var Slugger
-     */
+
     private $slugger;
 
     public function __construct(PostRepositoryInterface $postRepository, Slugger $slugger)

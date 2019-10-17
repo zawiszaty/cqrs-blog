@@ -6,11 +6,10 @@ namespace App\Blog\Application\Command\Post\Create;
 
 final class CreatePostCommand
 {
-    /** @var string */
     private $title;
-    /** @var string */
+
     private $content;
-    /** @var array */
+
     private $tags;
 
     public function __construct(string $title, string $content, array $tags)

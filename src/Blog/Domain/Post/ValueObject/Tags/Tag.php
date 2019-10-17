@@ -6,9 +6,6 @@ namespace App\Blog\Domain\Post\ValueObject\Tags;
 
 class Tag
 {
-    /**
-     * @var string
-     */
     private $tag;
 
     private function __construct(string $tag)

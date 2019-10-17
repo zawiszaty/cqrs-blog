@@ -18,9 +18,6 @@ use App\Blog\Infrastructure\Shared\StoreRepository\StoreRepository;
 
 class CategoryStoreRepository extends StoreRepository implements CategoryStoreRepositoryInterface
 {
-    /**
-     * @var CategoryRepositoryInterface
-     */
     private $categoryRepository;
 
     public function __construct(ProjectionProcessorInterface $projectionProcessor, CategoryRepositoryInterface $categoryRepository, RabbitmqClientInterface $client)

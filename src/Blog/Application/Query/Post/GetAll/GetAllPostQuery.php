@@ -6,14 +6,8 @@ namespace App\Blog\Application\Query\Post\GetAll;
 
 class GetAllPostQuery
 {
-    /**
-     * @var int
-     */
     private $page;
 
-    /**
-     * @var int
-     */
     private $limit;
 
     public function __construct(int $page, int $limit)
@@ -22,17 +16,11 @@ class GetAllPostQuery
         $this->limit = $limit;
     }
 
-    /**
-     * @return int
-     */
     public function getPage(): int
     {
         return $this->page;
     }
 
-    /**
-     * @return int
-     */
     public function getLimit(): int
     {
         return $this->limit;

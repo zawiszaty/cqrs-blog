@@ -10,9 +10,6 @@ use App\Blog\Infrastructure\Category\Repository\Projection\CategoryFinderInterfa
 
 class GetAllCategoryHandler implements QueryHandlerInterface
 {
-    /**
-     * @var CategoryFinderInterface
-     */
     private $categoryFinder;
 
     public function __construct(CategoryFinderInterface $categoryFinder)

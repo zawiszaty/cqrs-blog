@@ -12,24 +12,12 @@ use App\Blog\Domain\User\ValueObject\UserName;
 
 class UserWasCreatedEvent extends Event
 {
-    /**
-     * @var AggregateRootId
-     */
     private $id;
 
-    /**
-     * @var UserName
-     */
     private $username;
 
-    /**
-     * @var Roles
-     */
     private $roles;
 
-    /**
-     * @var Password
-     */
     private $password;
 
     public function __construct(AggregateRootId $id, UserName $username, Roles $roles, Password $password)

@@ -6,9 +6,6 @@ namespace App\Blog\Domain\Post\ValueObject;
 
 class Title
 {
-    /**
-     * @var string
-     */
     private $title;
 
     private function __construct(string $title)
