@@ -18,7 +18,7 @@ class SecurityControllerTest extends WebTestCase
         $form = $crawler->selectButton('Sign in')->form();
         $form['username'] = 'test';
         $form['password'] = 'test123';
-        $crawler = $client->submit($form);
+        $client->submit($form);
         $crawler = $client->followRedirect();
         $this->assertSame('http://localhost/', $crawler->getUri());
     }

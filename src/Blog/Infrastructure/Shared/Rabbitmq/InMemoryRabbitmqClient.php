@@ -8,7 +8,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 final class InMemoryRabbitmqClient implements RabbitmqClientInterface
 {
-    public function publish(AMQPMessage $msg, string $exchange, string $route)
+    public function publish(AMQPMessage $msg, string $exchange, string $route): void
     {
         // TODO: Implement publish() method.
     }

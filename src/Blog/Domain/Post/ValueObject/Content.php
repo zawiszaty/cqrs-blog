@@ -13,11 +13,9 @@ class Content
         $this->content = $content;
     }
 
-    public static function withContent(string $name): self
+    public static function withContent(string $contentValue): self
     {
-        $name = new self($name);
-
-        return $name;
+        return new self($contentValue);
     }
 
     public function toString(): string

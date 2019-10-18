@@ -52,7 +52,7 @@ class Post extends AggregateRoot
         }
     }
 
-    private function applyPostWasCreatedEvent(PostWasCreatedEvent $event)
+    private function applyPostWasCreatedEvent(PostWasCreatedEvent $event): void
     {
         $this->id = $event->getId();
         $this->content = $event->getContent();

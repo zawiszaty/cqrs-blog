@@ -20,14 +20,13 @@ class UserName
     {
         Assertion::string($name, 'Name must be string');
         Assertion::notEq($name, '', 'Name must be not a empty string');
-        $self = new self($name);
 
-        return $self;
+        return new self($name);
     }
 
     public function toString()
     {
-        return $this->__toString();
+        return (string) $this;
     }
 
     public function __toString()

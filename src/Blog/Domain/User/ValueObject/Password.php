@@ -19,14 +19,13 @@ class Password
     {
         Assertion::string($password, 'Password must be string');
         Assertion::length($password, 60, 'Password must be hash');
-        $self = new self($password);
 
-        return $self;
+        return new self($password);
     }
 
-    public function toString()
+    public function toString(): string
     {
-        return $this->__toString();
+        return (string) $this;
     }
 
     public function __toString()

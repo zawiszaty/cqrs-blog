@@ -28,7 +28,7 @@ class CategoryStoreRepository extends StoreRepository implements CategoryStoreRe
 
     public function store(Category $category): void
     {
-        foreach ($category->getUnCommitedEvent() as $event) {
+        foreach ($category->getUnCommittedEvent() as $event) {
             $this->events[] = $event;
         }
         $this->apply();

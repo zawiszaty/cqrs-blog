@@ -56,7 +56,7 @@ class UserStoreRepository extends StoreRepository implements UserStoreRepository
 
     public function store(User $category): void
     {
-        foreach ($category->getUnCommitedEvent() as $event) {
+        foreach ($category->getUnCommittedEvent() as $event) {
             $this->events[] = $event;
         }
         $this->apply();

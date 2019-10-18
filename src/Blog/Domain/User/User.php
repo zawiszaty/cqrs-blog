@@ -30,7 +30,7 @@ class User extends AggregateRoot
      */
     private $password;
 
-    public static function create(UserName $username, Roles $roles, Password $password)
+    public static function create(UserName $username, Roles $roles, Password $password): User
     {
         $user = new self();
         $user->record(

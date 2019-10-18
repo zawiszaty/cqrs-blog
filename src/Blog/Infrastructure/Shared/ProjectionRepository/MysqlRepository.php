@@ -49,9 +49,6 @@ abstract class MysqlRepository
         $this->repository = $objectRepository;
     }
 
-    /**
-     * MysqlRepository constructor.
-     */
     public function __construct(ORMAdapterInterface $entityManager)
     {
         $this->entityManager = $entityManager;

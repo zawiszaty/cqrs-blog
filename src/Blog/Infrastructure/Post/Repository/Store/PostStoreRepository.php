@@ -43,7 +43,7 @@ final class PostStoreRepository extends StoreRepository implements PostStoreRepo
             'id' => AggregateRootId::withId(RamseyUuidAdapter::fromString($postView->id)),
             'content' => Content::withContent($postView->getContent()),
             'title' => Title::withTitle($postView->getTitle()),
-            'tags' => Tags::withTags((array) json_decode($postView->getTags(), true)),
+            'tags' => Tags::withTags((array) json_decode($postView->getTags(), true, 512, JSON_THROW_ON_ERROR)),
         ]);
 
         return $post;
@@ -51,7 +51,7 @@ final class PostStoreRepository extends StoreRepository implements PostStoreRepo
 
     public function store(Post $post): void
     {
-        foreach ($post->getUnCommitedEvent() as $event) {
+        foreach ($post->getUnCommittedEvent() as $event) {
             $this->events[] = $event;
         }
         $this->apply();

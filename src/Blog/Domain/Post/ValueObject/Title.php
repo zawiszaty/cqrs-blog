@@ -13,11 +13,9 @@ class Title
         $this->title = $title;
     }
 
-    public static function withTitle(string $title): self
+    public static function withTitle(string $titleValue): self
     {
-        $title = new self($title);
-
-        return $title;
+        return new self($titleValue);
     }
 
     public function toString(): string

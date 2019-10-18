@@ -20,9 +20,7 @@ class AggregateRootId
 
     public static function withId(UuidInterface $id): self
     {
-        $aggregateRootId = new self($id);
-
-        return $aggregateRootId;
+        return new self($id);
     }
 
     public function toString(): string

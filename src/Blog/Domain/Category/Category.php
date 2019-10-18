@@ -39,7 +39,7 @@ class Category extends AggregateRoot
         ));
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->record(new CategoryWasDeletedEvent($this->id));
     }

@@ -8,7 +8,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 interface RabbitmqClientInterface
 {
-    public function publish(AMQPMessage $msg, string $exchange, string $route);
+    public function publish(AMQPMessage $msg, string $exchange, string $route): void ;
 
     public function queue(string $name): void;
 

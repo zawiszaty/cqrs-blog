@@ -27,7 +27,7 @@ class Tags
         return new self($tags);
     }
 
-    public function addTags(string $tag)
+    public function addTags(string $tag): void
     {
         $this->tags[] = Tag::withContent($tag);
     }
@@ -49,7 +49,7 @@ class Tags
             $tags[] = $tag->toString();
         }
 
-        return (string) json_encode($tags);
+        return (string) json_encode($tags, JSON_THROW_ON_ERROR, 512);
     }
 
     public function __toString()

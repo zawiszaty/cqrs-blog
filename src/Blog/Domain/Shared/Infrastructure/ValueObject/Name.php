@@ -16,11 +16,9 @@ class Name
         $this->name = $name;
     }
 
-    public static function withName(string $name): self
+    public static function withName(string $nameValue): self
     {
-        $name = new self($name);
-
-        return $name;
+        return new self($nameValue);
     }
 
     public function toString(): string

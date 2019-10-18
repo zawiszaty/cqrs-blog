@@ -13,11 +13,9 @@ class Tag
         $this->tag = $tag;
     }
 
-    public static function withContent(string $tag): self
+    public static function withContent(string $tagName): self
     {
-        $tag = new self($tag);
-
-        return $tag;
+        return new static($tagName);
     }
 
     public function toString(): string

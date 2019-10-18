@@ -16,7 +16,7 @@ abstract class AggregateRoot
     /**
      * @var array<Event>
      */
-    private $unCommitedEvent = [];
+    private $unCommittedEvent = [];
 
     /**
      * @return AggregateRootId
@@ -26,15 +26,15 @@ abstract class AggregateRoot
         return $this->id;
     }
 
-    protected function record(Event $event)
+    protected function record(Event $event): void
     {
-        $this->unCommitedEvent[] = $event;
+        $this->unCommittedEvent[] = $event;
         $this->apply($event);
     }
 
     public function commitEvent(): void
     {
-        $this->unCommitedEvent = [];
+        $this->unCommittedEvent = [];
     }
 
     abstract public function apply(Event $event): void;
@@ -42,8 +42,8 @@ abstract class AggregateRoot
     /**
      * @return array
      */
-    public function getUnCommitedEvent(): array
+    public function getUnCommittedEvent(): array
     {
-        return $this->unCommitedEvent;
+        return $this->unCommittedEvent;
     }
 }

@@ -16,7 +16,7 @@ class CategoryTest extends TestCase
     public function testItCreateCategory()
     {
         $category = Category::create(Name::withName('test'));
-        $events = $category->getUnCommitedEvent();
+        $events = $category->getUnCommittedEvent();
         $this->assertInstanceOf(CategoryWasCreatedEvent::class, $events[0]);
         /** @var CategoryWasCreatedEvent $userWasCreatedEvent */
         $userWasCreatedEvent = $events[0];
@@ -27,7 +27,7 @@ class CategoryTest extends TestCase
     {
         $category = Category::create(Name::withName('test'));
         $category->edit(Name::withName('test2'));
-        $events = $category->getUnCommitedEvent();
+        $events = $category->getUnCommittedEvent();
         $this->assertInstanceOf(CategoryWasEditedEvent::class, $events[1]);
         /** @var CategoryWasEditedEvent $userWasCreatedEvent */
         $userWasCreatedEvent = $events[1];
@@ -38,7 +38,7 @@ class CategoryTest extends TestCase
     {
         $category = Category::create(Name::withName('test'));
         $category->delete();
-        $events = $category->getUnCommitedEvent();
+        $events = $category->getUnCommittedEvent();
         $this->assertInstanceOf(CategoryWasDeletedEvent::class, $events[1]);
         /** @var CategoryWasDeletedEvent $userWasCreatedEvent */
         $userWasCreatedEvent = $events[1];

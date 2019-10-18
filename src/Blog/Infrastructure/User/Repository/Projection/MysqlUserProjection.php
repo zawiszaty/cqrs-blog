@@ -18,7 +18,7 @@ class MysqlUserProjection
         $this->userRepository = $userRepository;
     }
 
-    public function create(UserWasCreatedEvent $createdEvent)
+    public function create(UserWasCreatedEvent $createdEvent): void
     {
         $userView = new UserView(
             $createdEvent->getId()->toString(),

@@ -18,7 +18,7 @@ class ProcessorConfig
     /**
      * @var array
      */
-    private $config = [];
+    private $config;
 
     public function __construct()
     {
@@ -31,9 +31,6 @@ class ProcessorConfig
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getConfig(string $key): string
     {
         return $this->config[$key];

@@ -28,7 +28,7 @@ final class RabbitmqClient implements RabbitmqClientInterface
         $this->channel = $this->connection->channel();
     }
 
-    public function publish(AMQPMessage $msg, string $exchange, string $route)
+    public function publish(AMQPMessage $msg, string $exchange, string $route): void
     {
         $this->channel->basic_publish($msg, $exchange, $route);
     }

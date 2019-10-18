@@ -14,7 +14,7 @@ class QueryBus
      */
     private $queryHandler = [];
 
-    public function addQueryHandler(object $query)
+    public function addQueryHandler(object $query): void
     {
         $this->queryHandler[\get_class($query)] = $query;
     }
@@ -30,9 +30,8 @@ class QueryBus
     {
         /** @var callable $handler */
         $handler = $this->commandToHandler(\get_class($command));
-        $data = $handler($command);
 
-        return $data;
+        return $handler($command);
     }
 
     /**
@@ -48,6 +47,7 @@ class QueryBus
         $queryHandler[count($queryHandler) - 1] = str_replace('Query', 'Handler', $queryHandler[count($queryHandler) - 1]);
         $queryHandler = implode('\\', $queryHandler);
         $handler = $this->queryHandler[$queryHandler];
+
         if (!$handler instanceof QueryHandlerInterface) {
             throw new HandlerNotFoundException('Handler not found from: '.$command);
         }

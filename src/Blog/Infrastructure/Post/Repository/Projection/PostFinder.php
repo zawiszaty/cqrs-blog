@@ -31,9 +31,8 @@ final class PostFinder extends MysqlRepository implements PostFinderInterface
             ->select('count(post.id)');
         $count = $qbCount->getQuery()->setCacheable(true)
             ->getSingleScalarResult();
-        $data = new DataCollection($model, (int) $count);
 
-        return $data;
+        return new DataCollection($model, (int) $count);
     }
 
     public function findOneByName(string $title): ?PostView

@@ -42,12 +42,6 @@ class EditCategoryHandler implements CommandHandlerInterface
     {
         $category = $this->categoryFinder->findOneByName($name);
 
-        if ($category) {
-            if ($category->id === $id) {
-                return true;
-            }
-        }
-
-        return false;
+        return $category && $category->id === $id;
     }
 }
