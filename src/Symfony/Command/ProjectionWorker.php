@@ -41,7 +41,7 @@ final class ProjectionWorker extends Command
         $this->client->queue('projection');
         $io->write("[*] Waiting for messages. To exit press CTRL+C\n");
         $this->client->consume('projection', function (AMQPMessage $msg) {
-            $event = unserialize($msg->getBody(), ['allowed_classes' => AMQPMessage::class]);
+            $event = unserialize($msg->getBody(), ['allowed_classes' => [Event::class]]);
 
             if (false === ($event instanceof Event)) {
                 $this->logger->error(sprintf('Is not a Event %s', $msg->getBody()));

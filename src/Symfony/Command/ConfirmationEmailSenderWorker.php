@@ -41,7 +41,7 @@ final class ConfirmationEmailSenderWorker extends Command
         $this->client->queue(UserWasCreatedEvent::class);
         $io->write("[*] Waiting for messages. To exit press CTRL+C\n");
         $this->client->consume(UserWasCreatedEvent::class, function (AMQPMessage $msg) {
-            $event = unserialize($msg->getBody());
+            $event = unserialize($msg->getBody(), ['allowed_classes' => [Event::class]]);
 
             if (false === ($event instanceof Event)) {
                 $this->logger->error(sprintf('Is not a Event %s', $msg->getBody()));
